@@ -10,7 +10,7 @@ use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Icons\Heroicon;
 
-enum Role: int implements HasColor, HasIcon, HasLabel
+enum Role: string implements HasColor, HasIcon, HasLabel
 {
     case Admin = 'admin';
     case Employee = 'employee';

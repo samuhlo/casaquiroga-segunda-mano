@@ -1,0 +1,12 @@
+includes:
+    - vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    level: max
+    paths:
+        - app
+
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    checkMissingCallableSignature: true
+    checkExplicitMixed: true
