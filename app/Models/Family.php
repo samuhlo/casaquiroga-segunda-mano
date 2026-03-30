@@ -18,6 +18,9 @@ class Family extends Model
         'nombre',
     ];
 
+    /**
+     * @return HasMany<SecondHandMachine, $this>
+     */
     public function secondHandMachines(): HasMany
     {
         return $this->hasMany(SecondHandMachine::class);

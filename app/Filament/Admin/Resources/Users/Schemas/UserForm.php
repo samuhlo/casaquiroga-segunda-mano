@@ -7,9 +7,9 @@ namespace App\Filament\Admin\Resources\Users\Schemas;
 use App\Enums\Role;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Component;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Hash;
-use Filament\Schemas\Components\Component;
 
 class UserForm
 {
@@ -39,9 +39,9 @@ class UserForm
 
             TextInput::make('password')
                 ->password()
-                ->dehydrated(fn($state) => filled($state))
-                ->dehydrateStateUsing(fn(?string $state) => filled($state) ? Hash::make($state) : null)
-                ->required(fn(string $context): bool => $context === 'create'),
+                ->dehydrated(fn ($state) => filled($state))
+                ->dehydrateStateUsing(fn (?string $state) => filled($state) ? Hash::make($state) : null)
+                ->required(fn (string $context): bool => $context === 'create'),
         ];
     }
 
