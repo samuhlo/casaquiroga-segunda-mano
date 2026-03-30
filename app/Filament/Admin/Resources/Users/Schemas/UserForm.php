@@ -19,13 +19,17 @@ class UserForm
             ->components([
                 TextInput::make('name')
                     ->required(),
+
                 TextInput::make('email')
                     ->label('Email address')
                     ->email()
                     ->required(),
+
                 Select::make('role')
                     ->options(Role::class)
+                    ->default(Role::User)
                     ->required(),
+
                 TextInput::make('password')
                     ->password()
                     ->dehydrated(fn($state) => filled($state))

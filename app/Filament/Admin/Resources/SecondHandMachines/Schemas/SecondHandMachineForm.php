@@ -6,11 +6,16 @@ namespace App\Filament\Admin\Resources\SecondHandMachines\Schemas;
 
 use App\Enums\Status;
 use App\Enums\Tax;
+use App\Filament\Admin\Resources\Brands\BrandResource;
+use App\Filament\Admin\Resources\Brands\Schemas\BrandForm;
+use App\Filament\Admin\Resources\Families\Schemas\FamilyForm;
+use App\Filament\Admin\Resources\Users\Schemas\UserForm;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Schemas\Components\Form;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -30,12 +35,22 @@ class SecondHandMachineForm
                     Select::make('family_id')
                         ->searchable()
                         ->relationship('family', 'nombre')
-                        ->default(null),
+                        ->default(null)
+                        ->createOptionForm(
+                            FamilyForm::configure(
+                                Schema::make()
+                            )->getComponents()
+                        ),
 
                     Select::make('brand_id')
                         ->searchable()
                         ->relationship('brand', 'nombre')
-                        ->default(null),
+                        ->default(null)
+                        ->createOptionForm(
+                            BrandForm::configure(
+                                Schema::make()
+                            )->getComponents()
+                        ),
 
                     TextInput::make('modelo')
                         ->default(null),
@@ -112,7 +127,12 @@ class SecondHandMachineForm
                     Select::make('cliente_compra_id')
                         ->label('Cliente')
                         ->relationship('customer', 'name')
-                        ->default(null),
+                        ->default(null)
+                        ->createOptionForm(
+                            UserForm::configure(
+                                Schema::make()
+                            )->getComponents()
+                        ),
 
                     Textarea::make('observaciones_compra')
                         ->default(null)
