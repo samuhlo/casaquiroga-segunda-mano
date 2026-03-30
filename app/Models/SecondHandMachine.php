@@ -6,14 +6,16 @@ namespace App\Models;
 
 use App\Enums\Status;
 use App\Enums\Tax;
+use Database\Factories\SecondHandMachineFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SecondHandMachine extends Model
 {
-    /** @use HasFactory<\Database\Factories\SecondHandMachineFactory> */
+    /** @use HasFactory<SecondHandMachineFactory> */
     use HasFactory;
+
     protected $fillable = [
         'codigo',
         'nombre',
@@ -36,14 +38,15 @@ class SecondHandMachine extends Model
     ];
 
     protected $casts = [
-        'coste'         => 'decimal:2',
-        'precio_venta'  => 'decimal:2',
-        'tax'           => Tax::class,
-        'estado'        => Status::class,
+        'coste' => 'decimal:2',
+        'precio_venta' => 'decimal:2',
+        'tax' => Tax::class,
+        'estado' => Status::class,
         'horas_trabajo' => 'integer',
-        'fotos'         => 'array',
-        'adjuntos'      => 'array',
+        'fotos' => 'array',
+        'adjuntos' => 'array',
     ];
+
     public function responsableCompra(): BelongsTo
     {
         return $this->belongsTo(User::class, 'responsable_compra_id');

@@ -10,32 +10,36 @@ use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Icons\Heroicon;
 
-enum Tax: int implements HasColor, HasIcon, HasLabel
+enum Role: int implements HasColor, HasIcon, HasLabel
 {
-    case Zero = 0;
-    case TwentyOne = 21;
+    case Admin = 'admin';
+    case Employee = 'employee';
+    case User = 'user';
 
     public function getLabel(): string
     {
         return match ($this) {
-            Tax::Zero => '0%',
-            Tax::TwentyOne => '21%',
+            Role::Admin => 'admin',
+            Role::Employee => 'employee',
+            Role::User => 'user',
         };
     }
 
     public function getColor(): array
     {
         return match ($this) {
-            Tax::Zero => Color::Gray,
-            Tax::TwentyOne => Color::Green,
+            Role::Admin => Color::Red,
+            Role::Employee => Color::Blue,
+            Role::User => Color::Gray,
         };
     }
 
     public function getIcon(): Heroicon
     {
         return match ($this) {
-            Tax::Zero => Heroicon::XCircle,
-            Tax::TwentyOne => Heroicon::ReceiptPercent,
+            Role::Admin => Heroicon::CalendarDays,
+            Role::Employee => Heroicon::BuildingOffice,
+            Role::User => Heroicon::BarsArrowUp,
         };
     }
 }
