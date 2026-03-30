@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\TallerReparacion;
+use App\Models\Marca;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<TallerReparacion>
+ * @extends Factory<Marca>
  */
-class TallerReparacionFactory extends Factory
+class MarcaFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,7 +20,7 @@ class TallerReparacionFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => $this->faker->unique()->company(),
+            'nombre' => $this->faker->unique()->words(2, true),
         ];
     }
 }

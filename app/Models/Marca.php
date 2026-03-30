@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Database\Factories\TallerReparacionFactory;
+use Database\Factories\MarcaFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class TallerReparacion extends Model
+class Marca extends Model
 {
-    /** @use HasFactory<TallerReparacionFactory> */
+    /** @use HasFactory<MarcaFactory> */
     use HasFactory;
 
     protected $fillable = [

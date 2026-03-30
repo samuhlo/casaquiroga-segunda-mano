@@ -29,15 +29,13 @@ return new class extends Migration
 
             // Machine details
             $table->foreignId('familia_id')->nullable()->constrained('familias')->nullOnDelete();
-            $table->string('marca')->nullable();
+            $table->foreignId('marca_id')->nullable()->constrained('marcas')->nullOnDelete();
             $table->string('modelo')->nullable();
             $table->string('numero_serie')->nullable()->unique();
 
-            // Repair
-            $table->foreignId('taller_reparacion_id')->nullable()->constrained('taller_reparaciones')->nullOnDelete();
-
             // Sale info
             $table->decimal('precio_venta', 10, 2)->nullable();
+            $table->decimal('taller_reparacion', 10, 2)->nullable();
             $table->tinyInteger('tax')->default(Tax::Zero->value);
 
             // Extra

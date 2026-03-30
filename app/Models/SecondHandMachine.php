@@ -21,7 +21,6 @@ class SecondHandMachine extends Model
         'nombre',
         'coste',
         'observaciones_compra',
-        'marca',
         'modelo',
         'numero_serie',
         'precio_venta',
@@ -29,9 +28,10 @@ class SecondHandMachine extends Model
         'horas_trabajo',
         'descripcion',
         'estado',
+        'taller_reparacion',
         'fotos',             // JSON array of paths
         'adjuntos',          // JSON array of paths
-        'taller_reparacion_id',
+        'marca_id',
         'responsable_compra_id',
         'cliente_compra_id',
         'familia_id',
@@ -40,6 +40,7 @@ class SecondHandMachine extends Model
     protected $casts = [
         'coste' => 'decimal:2',
         'precio_venta' => 'decimal:2',
+        'taller_reparacion' => 'decimal:2',
         'tax' => Tax::class,
         'estado' => Status::class,
         'horas_trabajo' => 'integer',
@@ -62,8 +63,8 @@ class SecondHandMachine extends Model
         return $this->belongsTo(Familia::class);
     }
 
-    public function tallerReparacion(): BelongsTo
+    public function marca(): BelongsTo
     {
-        return $this->belongsTo(TallerReparacion::class);
+        return $this->belongsTo(Marca::class);
     }
 }

@@ -6,6 +6,8 @@ namespace Database\Factories;
 
 use App\Enums\Status;
 use App\Enums\Tax;
+use App\Models\Familia;
+use App\Models\Marca;
 use App\Models\SecondHandMachine;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -26,11 +28,11 @@ class SecondHandMachineFactory extends Factory
             'responsable_compra_id' => User::factory(),
             'cliente_compra_id' => User::factory(),
             'observaciones_compra' => $this->faker->optional()->sentence(),
-            'familia_id' => null, // set when Familia factory exists
-            'marca' => $this->faker->company(),
+            'familia_id' => Familia::factory(),
+            'marca_id' => Marca::factory(),
             'modelo' => strtoupper($this->faker->bothify('MOD-??##')),
             'numero_serie' => strtoupper($this->faker->unique()->bothify('SN-????####')),
-            'taller_reparacion_id' => null, // set when TallerReparacion factory exists
+            'taller_reparacion' => $this->faker->randomFloat(2, 1000, 80000),
             'precio_venta' => $this->faker->randomFloat(2, 1000, 80000),
             'tax' => $this->faker->randomElement(Tax::cases()),
             'horas_trabajo' => $this->faker->numberBetween(0, 10000),
