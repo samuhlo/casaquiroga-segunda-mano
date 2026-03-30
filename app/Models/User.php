@@ -49,8 +49,8 @@ class User extends Authenticatable
     public function canAccessPanel(Panel $panel): bool
     {
         return match ($panel->getId()) {
-            'admin' => $this->role === $this->isAdmin(),
-            'employee' => $this->role === $this->isEmployee(),
+            'admin' => $this->isAdmin(),
+            'employee' => $this->isEmployee(),
             default => false,
         };
     }

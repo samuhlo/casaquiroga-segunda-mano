@@ -41,3 +41,7 @@ Ticket::factory()
     ->recycle(Airline::factory()->create())
     ->create();
 ```
+
+## Use pest framework for testing
+
+The tests needs to be write with Pest style
