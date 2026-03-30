@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
-use App\Models\Family;
 use App\Models\Brand;
+use App\Models\Family;
 use App\Models\SecondHandMachine;
+use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 uses(LazilyRefreshDatabase::class);

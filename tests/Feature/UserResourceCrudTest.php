@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
+use App\Enums\Role;
 use App\Filament\Admin\Resources\Users\Pages\CreateUser;
 use App\Filament\Admin\Resources\Users\Pages\EditUser;
-use App\Models\User;
-use App\Enums\Role;
 use App\Filament\Admin\Resources\Users\Pages\ListUsers;
+use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+
 use function Pest\Livewire\livewire;
 
 uses(LazilyRefreshDatabase::class);
@@ -24,7 +25,7 @@ describe('UserResource', function () {
     });
 
     it('can create a user', function () {
-        $email = 'testuser' . Str::random(5) . '@example.com';
+        $email = 'testuser'.Str::random(5).'@example.com';
         livewire(CreateUser::class)
             ->fillForm([
                 'name' => 'Test User',

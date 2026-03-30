@@ -7,6 +7,7 @@ use App\Filament\Admin\Resources\Families\Pages\EditFamily;
 use App\Filament\Admin\Resources\Families\Pages\ListFamilies;
 use App\Models\Family;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+
 use function Pest\Livewire\livewire;
 
 uses(LazilyRefreshDatabase::class);
@@ -19,7 +20,6 @@ describe('FamilyResource', function () {
             ->assertOk()
             ->assertCanSeeTableRecords($families);
     });
-
 
     it('can create a family', function () {
         livewire(CreateFamily::class)

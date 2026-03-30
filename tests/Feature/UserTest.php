@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Enums\Role;
 use App\Models\User;
 use Filament\Panel;
@@ -14,6 +16,7 @@ function mockPanel(string $id): Panel
         ->disableOriginalConstructor()
         ->getMock();
     $panel->method('getId')->willReturn($id);
+
     return $panel;
 }
 

@@ -6,13 +6,10 @@ namespace App\Filament\Employee\Resources\SecondHandMachines;
 
 use App\Filament\Employee\Resources\SecondHandMachines\Pages\ListSecondHandMachines;
 use App\Filament\Employee\Resources\SecondHandMachines\Pages\ViewSecondHandMachine;
-use App\Filament\Employee\Resources\SecondHandMachines\Schemas\SecondHandMachineForm;
-use App\Filament\Employee\Resources\SecondHandMachines\Schemas\SecondHandMachineInfolist;
 use App\Filament\Employee\Resources\SecondHandMachines\Tables\SecondHandMachinesTable;
 use App\Models\SecondHandMachine;
 use BackedEnum;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 

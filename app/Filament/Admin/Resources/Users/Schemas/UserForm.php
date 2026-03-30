@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Admin\Resources\Users\Schemas;
 
 use App\Enums\Role;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -32,9 +31,9 @@ class UserForm
 
                 TextInput::make('password')
                     ->password()
-                    ->dehydrated(fn($state) => filled($state))
-                    ->dehydrateStateUsing(fn($state) => filled($state) ? \Illuminate\Support\Facades\Hash::make($state) : null)
-                    ->required(fn(string $context): bool => $context === 'create'),
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->dehydrateStateUsing(fn ($state) => filled($state) ? Hash::make($state) : null)
+                    ->required(fn (string $context): bool => $context === 'create'),
             ]);
     }
 }

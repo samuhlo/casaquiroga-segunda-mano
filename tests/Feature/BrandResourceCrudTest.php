@@ -7,6 +7,7 @@ use App\Filament\Admin\Resources\Brands\Pages\EditBrand;
 use App\Filament\Admin\Resources\Brands\Pages\ListBrands;
 use App\Models\Brand;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+
 use function Pest\Livewire\livewire;
 
 uses(LazilyRefreshDatabase::class);
@@ -19,7 +20,6 @@ describe('BrandResource', function () {
             ->assertOk()
             ->assertCanSeeTableRecords($Brands);
     });
-
 
     it('can create a Brand', function () {
         livewire(CreateBrand::class)

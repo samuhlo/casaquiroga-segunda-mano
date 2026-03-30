@@ -6,8 +6,8 @@ namespace Database\Factories;
 
 use App\Enums\Status;
 use App\Enums\Tax;
-use App\Models\Family;
 use App\Models\Brand;
+use App\Models\Family;
 use App\Models\SecondHandMachine;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -45,21 +45,21 @@ class SecondHandMachineFactory extends Factory
 
     public function disponible(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'estado' => Status::Disponible,
         ]);
     }
 
     public function vendida(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'estado' => Status::Vendida,
         ]);
     }
 
     public function sinImpuesto(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'tax' => Tax::Zero,
         ]);
     }

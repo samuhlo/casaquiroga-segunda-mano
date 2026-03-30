@@ -18,7 +18,7 @@ class SecondHandMachinesTable
             ->columns([
                 TextColumn::make('nombre')
                     ->limit(20)
-                    ->tooltip(fn($state) => $state)
+                    ->tooltip(fn ($state) => $state)
                     ->searchable(),
 
                 TextColumn::make('coste')

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Employee\Resources\SecondHandMachines\Pages;
 
 use App\Filament\Employee\Resources\SecondHandMachines\SecondHandMachineResource;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListSecondHandMachines extends ListRecords
