@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Filament\Employee\Resources\SecondHandMachines;
 
-use App\Filament\Employee\Resources\SecondHandMachines\Pages\CreateSecondHandMachine;
-use App\Filament\Employee\Resources\SecondHandMachines\Pages\EditSecondHandMachine;
 use App\Filament\Employee\Resources\SecondHandMachines\Pages\ListSecondHandMachines;
 use App\Filament\Employee\Resources\SecondHandMachines\Pages\ViewSecondHandMachine;
 use App\Filament\Employee\Resources\SecondHandMachines\Schemas\SecondHandMachineForm;
@@ -25,11 +23,6 @@ class SecondHandMachineResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'name';
-
-    public static function form(Schema $schema): Schema
-    {
-        return SecondHandMachineForm::configure($schema);
-    }
 
     public static function infolist(Schema $schema): Schema
     {
@@ -52,9 +45,7 @@ class SecondHandMachineResource extends Resource
     {
         return [
             'index' => ListSecondHandMachines::route('/'),
-            'create' => CreateSecondHandMachine::route('/create'),
             'view' => ViewSecondHandMachine::route('/{record}'),
-            'edit' => EditSecondHandMachine::route('/{record}/edit'),
         ];
     }
 }

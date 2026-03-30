@@ -44,8 +44,7 @@ class SecondHandMachineInfolist
                     ->numeric()
                     ->placeholder('-'),
                 TextEntry::make('tax')
-                    ->badge()
-                    ->numeric(),
+                    ->badge(),
                 TextEntry::make('horas_trabajo')
                     ->numeric()
                     ->placeholder('-'),
