@@ -127,7 +127,7 @@ class SecondHandMachineForm
                         ->relationship('customer', 'name')
                         ->default(null)
                         ->createOptionForm(
-                            UserForm::configure(
+                            UserForm::partialConfigure(
                                 Schema::make()
                             )->getComponents()
                         ),

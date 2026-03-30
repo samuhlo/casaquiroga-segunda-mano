@@ -9,31 +9,52 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Hash;
+use Filament\Schemas\Components\Component;
 
 class UserForm
 {
-    public static function configure(Schema $schema): Schema
+    public static function fullConfigure(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                TextInput::make('name')
-                    ->required(),
+        return $schema->components(self::fullFields());
+    }
 
-                TextInput::make('email')
-                    ->label('Email address')
-                    ->email()
-                    ->required(),
+    public static function partialConfigure(Schema $schema): Schema
+    {
+        return $schema->components(self::baseFields());
+    }
 
-                Select::make('role')
-                    ->options(Role::class)
-                    ->default(Role::User)
-                    ->required(),
+    /**
+     * @return array<Component>
+     */
+    public static function baseFields(): array
+    {
+        return [
+            TextInput::make('name')
+                ->required(),
 
-                TextInput::make('password')
-                    ->password()
-                    ->dehydrated(fn ($state) => filled($state))
-                    ->dehydrateStateUsing(fn ($state) => filled($state) ? Hash::make($state) : null)
-                    ->required(fn (string $context): bool => $context === 'create'),
-            ]);
+            TextInput::make('email')
+                ->label('Email address')
+                ->email()
+                ->required(),
+
+            TextInput::make('password')
+                ->password()
+                ->dehydrated(fn($state) => filled($state))
+                ->dehydrateStateUsing(fn(?string $state) => filled($state) ? Hash::make($state) : null)
+                ->required(fn(string $context): bool => $context === 'create'),
+        ];
+    }
+
+    /**
+     * @return array<Component>
+     */
+    public static function fullFields(): array
+    {
+        return array_merge(self::baseFields(), [
+            Select::make('role')
+                ->options(Role::class)
+                ->default(Role::User)
+                ->required(),
+        ]);
     }
 }
