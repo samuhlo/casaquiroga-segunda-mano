@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'precio_venta',
     'tax',
     'horas_trabajo',
-    'descripcion',
+    'description',
     'estado',
     'taller_reparacion',
     'fotos',

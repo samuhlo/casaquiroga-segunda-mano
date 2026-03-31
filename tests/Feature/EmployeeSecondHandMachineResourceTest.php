@@ -70,6 +70,6 @@ describe('Employee SecondHandMachineResource', function () {
         $note = $machine->notes->last();
 
         expect($note)->not->toBeNull();
-        expect($note->descripcion)->toBe('Nueva nota de prueba');
+        expect($note->description)->toBe('Nueva nota de prueba');
     });
 });

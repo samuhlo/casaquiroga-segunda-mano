@@ -40,7 +40,7 @@ return new class extends Migration
 
             // Extra
             $table->integer('horas_trabajo')->nullable();
-            $table->text('descripcion')->nullable();
+            $table->text('description')->nullable();
             $table->string('estado')->default(Status::Disponible->value);
 
             // Files

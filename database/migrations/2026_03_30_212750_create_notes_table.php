@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->text('descripcion');
+            $table->text('description');
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('second_hand_machine_id')->constrained('second_hand_machines')->cascadeOnDelete();
             $table->string('previous_state');

@@ -25,12 +25,12 @@ class NotesFactory extends Factory
         $new = $this->faker->randomElement(
             array_filter(
                 Status::cases(),
-                fn ($case) => $case !== $previous
+                fn($case) => $case !== $previous
             )
         );
 
         return [
-            'descripcion' => $this->faker->paragraph(),
+            'description' => $this->faker->paragraph(),
             'previous_state' => $previous,
             'new_state' => $new,
         ];

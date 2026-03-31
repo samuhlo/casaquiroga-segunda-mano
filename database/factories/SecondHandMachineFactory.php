@@ -56,7 +56,7 @@ class SecondHandMachineFactory extends Factory
             'precio_venta' => $this->faker->randomFloat(2, 1000, 80000),
             'tax' => $this->faker->randomElement(Tax::cases()),
             'horas_trabajo' => $this->faker->numberBetween(0, 10000),
-            'descripcion' => $this->faker->optional()->paragraph(),
+            'description' => $this->faker->optional()->paragraph(),
             'estado' => $this->faker->randomElement(Status::cases()),
             'fotos' => null,
             'adjuntos' => null,
@@ -65,21 +65,21 @@ class SecondHandMachineFactory extends Factory
 
     public function disponible(): static
     {
-        return $this->state(fn () => [
+        return $this->state(fn() => [
             'estado' => Status::Disponible,
         ]);
     }
 
     public function vendida(): static
     {
-        return $this->state(fn () => [
+        return $this->state(fn() => [
             'estado' => Status::Vendida,
         ]);
     }
 
     public function sinImpuesto(): static
     {
-        return $this->state(fn () => [
+        return $this->state(fn() => [
             'tax' => Tax::Zero,
         ]);
     }

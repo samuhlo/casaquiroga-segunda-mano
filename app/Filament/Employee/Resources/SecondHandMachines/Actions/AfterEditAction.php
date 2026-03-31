@@ -15,7 +15,7 @@ class AfterEditAction
     public static function saveNote(SecondHandMachine $record, array $data, Status $previous): void
     {
         $record->notes()->create([
-            'descripcion' => $data['new_note'],
+            'description' => $data['new_note'],
             'user_id' => auth()->id(),
             'previous_state' => $previous,
             'new_state' => $record->estado,
