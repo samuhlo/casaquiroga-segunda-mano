@@ -163,6 +163,14 @@ class SecondHandMachineForm
                                 )
                                 ->disabled(),
 
+                            TextInput::make('previous_state')
+                                ->disabled()
+                                ->formatStateUsing(fn ($state) => Status::tryFrom($state)?->getLabel()),  // @phpstan-ignore-line
+
+                            TextInput::make('new_state')
+                                ->disabled()
+                                ->formatStateUsing(fn ($state) => Status::tryFrom($state)?->getLabel()), // @phpstan-ignore-line
+
                             Textarea::make('descripcion')
                                 ->disabled()
                                 ->columnSpanFull(),

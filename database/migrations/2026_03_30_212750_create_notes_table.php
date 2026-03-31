@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('descripcion');
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('second_hand_machine_id')->constrained('second_hand_machines')->cascadeOnDelete();
+            $table->string('previous_state');
+            $table->string('new_state');
             $table->timestamps();
         });
     }
