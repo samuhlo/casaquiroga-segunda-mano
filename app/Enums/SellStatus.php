@@ -12,20 +12,20 @@ use Filament\Support\Icons\Heroicon;
 
 enum SellStatus: string implements HasColor, HasIcon, HasLabel
 {
-    case Available = 'disponible';
-    case InPreparation = 'en_preparacion';
-    case ArriveSoon = 'proxima_entrada';
-    case Reserved = 'reservada';
-    case Sold = 'vendida';
+    case Available = 'available';
+    case InPreparation = 'in_preparation';
+    case ArriveSoon = 'arrive_soon';
+    case Reserved = 'reserved';
+    case Sold = 'sold';
 
     public function getLabel(): string
     {
         return match ($this) {
-            SellStatus::Available => 'Disponible',
-            SellStatus::InPreparation => 'En preparación',
-            SellStatus::ArriveSoon => 'Próxima entrada',
-            SellStatus::Reserved => 'Reservada',
-            SellStatus::Sold => 'Vendida',
+            SellStatus::Available => __('Available'),
+            SellStatus::InPreparation => __('In Preparation'),
+            SellStatus::ArriveSoon => __('Arrive Soon'),
+            SellStatus::Reserved => __('Reserved'),
+            SellStatus::Sold => __('Sold'),
         };
     }
 

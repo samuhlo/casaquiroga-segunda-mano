@@ -39,7 +39,7 @@ class SecondHandMachinesTable
                     SelectFilter::make('sell_status')
                         ->options(
                             collect(SellStatus::cases()) // @phpstan-ignore-line
-                                ->mapWithKeys(fn($case) => [
+                                ->mapWithKeys(fn ($case) => [
                                     $case->value => $case->getLabel(),
                                 ])
                                 ->toArray()
@@ -48,7 +48,7 @@ class SecondHandMachinesTable
                     SelectFilter::make('tax')
                         ->options(
                             collect(Tax::cases()) // @phpstan-ignore-line
-                                ->mapWithKeys(fn($case) => [
+                                ->mapWithKeys(fn ($case) => [
                                     $case->value => $case->getLabel(),
                                 ])
                                 ->toArray()

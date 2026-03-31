@@ -157,7 +157,7 @@ class SecondHandMachineForm
                             TextInput::make('created_at')
                                 ->label('Creada en')
                                 ->formatStateUsing(
-                                    fn($state) => $state
+                                    fn ($state) => $state
                                         ? Carbon::parse($state)->format('d-m-Y H:i') // @phpstan-ignore-line
                                         : null
                                 )
@@ -165,11 +165,11 @@ class SecondHandMachineForm
 
                             TextInput::make('previous_state')
                                 ->disabled()
-                                ->formatStateUsing(fn($state) => SellStatus::tryFrom($state)?->getLabel()),  // @phpstan-ignore-line
+                                ->formatStateUsing(fn ($state) => SellStatus::tryFrom($state)?->getLabel()),  // @phpstan-ignore-line
 
                             TextInput::make('new_state')
                                 ->disabled()
-                                ->formatStateUsing(fn($state) => SellStatus::tryFrom($state)?->getLabel()), // @phpstan-ignore-line
+                                ->formatStateUsing(fn ($state) => SellStatus::tryFrom($state)?->getLabel()), // @phpstan-ignore-line
 
                             Textarea::make('description')
                                 ->disabled()
@@ -178,7 +178,7 @@ class SecondHandMachineForm
                 ])
                     ->columnSpanFull()
                     ->collapsible()
-                    ->hidden(fn(string $operation): bool => $operation === 'create'),
+                    ->hidden(fn (string $operation): bool => $operation === 'create'),
             ]);
     }
 }

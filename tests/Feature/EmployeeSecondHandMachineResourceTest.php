@@ -33,7 +33,7 @@ describe('Employee SecondHandMachineResource', function () {
     });
 
     it('can view the second hand machine', function () {
-        $machine = SecondHandMachine::factory()->create(['sell_status' => 'disponible']);
+        $machine = SecondHandMachine::factory()->create();
 
         livewire(ViewSecondHandMachine::class, ['record' => $machine->id])
             ->assertOk();
@@ -41,7 +41,7 @@ describe('Employee SecondHandMachineResource', function () {
 
     it('can edit status and create a note', function () {
         $machine = SecondHandMachine::factory()->create([
-            'sell_status' => 'disponible',
+            'sell_status' => SellStatus::Available,
         ]);
 
         $livewire = livewire(ViewSecondHandMachine::class, [

@@ -65,7 +65,7 @@ class SecondHandMachineFactory extends Factory
 
     public function sinImpuesto(): static
     {
-        return $this->state(fn() => [
+        return $this->state(fn () => [
             'tax' => Tax::Zero,
         ]);
     }

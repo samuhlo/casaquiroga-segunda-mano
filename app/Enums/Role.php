@@ -19,9 +19,9 @@ enum Role: string implements HasColor, HasIcon, HasLabel
     public function getLabel(): string
     {
         return match ($this) {
-            Role::Admin => 'Admin',
-            Role::Employee => 'Employee',
-            Role::User => 'User',
+            Role::Admin => __('Admin'),
+            Role::Employee => __('Employee'),
+            Role::User => __('User'),
         };
     }
 
