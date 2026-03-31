@@ -53,13 +53,13 @@ describe('Employee SecondHandMachineResource', function () {
         $livewire->assertActionMounted('edit');
 
         $livewire->assertMountedActionModalSee([
-            'new_note',
+            'note_description',
             'sell_status',
         ]);
 
         $livewire->fillForm([
             'sell_status' => SellStatus::Sold,
-            'new_note' => 'Nueva nota de prueba',
+            'note_description' => 'Nueva nota de prueba',
         ])
             ->callMountedAction();
 

@@ -16,13 +16,13 @@ class SecondHandMachineForm
         return $schema
             ->components([
                 ToggleButtons::make('sell_status')
-                    ->label('Estado')
+                    ->label(ucfirst(__('sell_status')))
                     ->options(SellStatus::class)
                     ->required()
                     ->inline(),
 
-                Textarea::make('new_note')
-                    ->label('Nota')
+                Textarea::make('note_description')
+                    ->label(ucfirst(__('note')))
                     ->required(),
             ])->columns(1);
     }

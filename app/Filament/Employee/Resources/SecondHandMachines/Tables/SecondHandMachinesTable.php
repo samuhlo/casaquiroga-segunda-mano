@@ -18,37 +18,46 @@ class SecondHandMachinesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('name'))
                     ->searchable(),
                 TextColumn::make('brand.name')
+                    ->label(ucfirst(__('brand.name')))
                     ->searchable(),
                 TextColumn::make('family.name')
+                    ->label(ucfirst(__('family.name')))
                     ->searchable(),
                 TextColumn::make('model')
+                    ->label(ucfirst(__('model')))
                     ->searchable(),
                 TextColumn::make('selling_price')
+                    ->label(ucfirst(__('selling_price')))
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('tax')
+                    ->label(ucfirst(__('tax')))
                     ->badge(),
                 TextColumn::make('sell_status')
+                    ->label(ucfirst(__('sell_status')))
                     ->badge()
                     ->searchable(),
             ])
             ->filters(
                 [
                     SelectFilter::make('sell_status')
+                        ->label(ucfirst(__('sell_status')))
                         ->options(
                             collect(SellStatus::cases()) // @phpstan-ignore-line
-                                ->mapWithKeys(fn ($case) => [
+                                ->mapWithKeys(fn($case) => [
                                     $case->value => $case->getLabel(),
                                 ])
                                 ->toArray()
                         ),
 
                     SelectFilter::make('tax')
+                        ->label(ucfirst(__('tax')))
                         ->options(
                             collect(Tax::cases()) // @phpstan-ignore-line
-                                ->mapWithKeys(fn ($case) => [
+                                ->mapWithKeys(fn($case) => [
                                     $case->value => $case->getLabel(),
                                 ])
                                 ->toArray()
