@@ -24,18 +24,11 @@ final class EmployeePanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
-        $cssFile = $this->getAppCssFile();
-
-        if ($cssFile) {
-            $panel->assets([
-                Css::make('app-css', asset('build/assets/'.$cssFile)),
-            ]);
-        }
-
         return $panel
             ->id('employee')
             ->path('empleado')
             ->login()
+            ->assets($this->getAppAssets())
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -60,14 +53,18 @@ final class EmployeePanelProvider extends PanelProvider
             ]);
     }
 
-    private function getAppCssFile(): ?string
+    /**
+     * @return list<Css>
+     */
+    private function getAppAssets(): array
     {
-        $cssFiles = File::glob(public_path('build/assets/app-*.css'));
+        /** @var array<string> $files */
+        $files = File::glob(public_path('build/assets/app-*.css'));
 
-        if (empty($cssFiles)) {
-            return null;
-        }
+        $cssFile = collect($files)
+            ->map(fn (string $path): string => basename($path))
+            ->first();
 
-        return basename($cssFiles[0]);
+        return $cssFile ? [Css::make('app-css', asset('build/assets/'.$cssFile))] : [];
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $machine->brand?->nombre }} {{ $machine->modelo }} — {{ $machine->codigo }}</title>
+    <title>{{ $machine->brand?->name }} {{ $machine->model }} — {{ $machine->identifier_code }}</title>
     {{-- =============================================================================
          █ [BLADE_PAGE] :: secondhandmachine-print-page
          DESC:   Vista de impresión/PDF para máquina de segunda mano.
@@ -236,27 +236,27 @@
     <div class="header">
         <div class="header-left">
             <p class="company">Ficha técnica de producto</p>
-            <h1 class="title">{{ $machine->modelo }}</h1>
-            <p class="subtitle">{{ $machine->brand?->nombre }}</p>
+            <h1 class="title">{{ $machine->model }}</h1>
+            <p class="subtitle">{{ $machine->brand?->name }}</p>
         </div>
         <div class="header-right">
             <p class="ref-label">Referencia</p>
-            <p class="ref">{{ $machine->codigo }}</p>
-            @if(in_array('estado', $campos) && $machine->estado)
-                <span class="badge">{{ $machine->estado->getLabel() }}</span>
+            <p class="ref">{{ $machine->identifier_code }}</p>
+            @if(in_array('status', $campos) && $machine->status)
+                <span class="badge">{{ $machine->status->getLabel() }}</span>
             @endif
         </div>
     </div>
 
     {{-- IMÁGENES --}}
-    @if(in_array('imagenes', $campos) && $machine->fotos && count($machine->fotos) > 0)
+    @if(in_array('photos', $campos) && $machine->photos && count($machine->photos) > 0)
         @php
-            $imgs = array_slice($machine->fotos, 0, 3);
+            $imgs = array_slice($machine->photos, 0, 3);
             $cols = count($imgs) === 1 ? 'cols-1' : (count($imgs) === 2 ? 'cols-2' : 'cols-3');
         @endphp
         <div class="images-grid {{ $cols }}">
             @foreach($imgs as $img)
-                <img src="{{ $img }}" alt="{{ $machine->modelo }}">
+                <img src="{{ $img }}" alt="{{ $machine->model }}">
             @endforeach
         </div>
     @endif
@@ -266,7 +266,7 @@
         <div class="price-box">
             <p class="price-label">Precio de venta</p>
             <p class="price-value">
-                {{ number_format($machine->precio_venta, 0, ',', '.') }}
+                {{ number_format($machine->selling_price, 0, ',', '.') }}
                 <span class="price-currency">EUR</span>
             </p>
         </div>
@@ -275,10 +275,10 @@
     {{-- SPECS --}}
     @php
         $specs = [];
-        if (in_array('marca', $campos))   $specs[] = ['Marca',      $machine->brand?->nombre ?? '—', false];
-        if (in_array('modelo', $campos))  $specs[] = ['Modelo',     $machine->modelo ?? '—',       false];
-        if (in_array('horas', $campos))   $specs[] = ['Horas de uso', number_format($machine->horas_trabajo ?? 0, 0, ',', '.') . ' h', false];
-        if (in_array('codigo', $campos))  $specs[] = ['Referencia', $machine->codigo ?? '—',       true];
+        if (in_array('marca', $campos))   $specs[] = ['Marca',      $machine->brand?->name ?? '—', false];
+        if (in_array('modelo', $campos))  $specs[] = ['Modelo',     $machine->model ?? '—',       false];
+        if (in_array('horas', $campos))   $specs[] = ['Horas de uso', number_format($machine->work_hours ?? 0, 0, ',', '.') . ' h', false];
+        if (in_array('codigo', $campos))  $specs[] = ['Referencia', $machine->identifier_code ?? '—',       true];
     @endphp
 
     @if(count($specs))
@@ -293,15 +293,15 @@
     @endif
 
     {{-- DESCRIPCIÓN --}}
-    @if(in_array('descripcion', $campos) && $machine->descripcion)
+    @if(in_array('description', $campos) && $machine->description)
         <p class="section-label">Descripción</p>
-        <div class="description">{{ $machine->descripcion }}</div>
+        <div class="description">{{ $machine->description }}</div>
     @endif
 
     {{-- FOOTER --}}
     <div class="footer">
         <span>Maquinaria Industrial S.L.</span>
-        <span>{{ $machine->codigo }} — Generado el {{ now()->format('d/m/Y') }}</span>
+        <span>{{ $machine->identifier_code }} — Generado el {{ now()->format('d/m/Y') }}</span>
     </div>
 
 </div>
