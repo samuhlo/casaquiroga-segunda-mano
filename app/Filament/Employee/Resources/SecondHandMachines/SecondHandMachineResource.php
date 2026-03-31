@@ -19,9 +19,17 @@ class SecondHandMachineResource extends Resource
 {
     protected static ?string $model = SecondHandMachine::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Truck;
 
-    protected static ?string $recordTitleAttribute = 'name';
+    public static function getNavigationLabel(): string
+    {
+        return ucfirst(__('second_hand_machine'));
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return ucfirst(__('second_hand_machines'));
+    }
 
     public static function table(Table $table): Table
     {

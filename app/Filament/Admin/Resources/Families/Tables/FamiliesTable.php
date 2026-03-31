@@ -17,6 +17,7 @@ class FamiliesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(ucfirst(__('name')))
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

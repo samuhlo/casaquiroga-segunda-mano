@@ -17,33 +17,37 @@ class SecondHandMachinesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(ucfirst(__('name')))
                     ->limit(20)
                     ->tooltip(fn ($state) => $state)
                     ->searchable(),
 
                 TextColumn::make('purchase_cost')
+                    ->label(ucfirst(__('purchase_cost')))
                     ->money('EUR')
                     ->sortable(),
 
                 TextColumn::make('selling_price')
+                    ->label(ucfirst(__('selling_price')))
                     ->money('EUR')
                     ->sortable(),
 
                 TextColumn::make('family.name')
-                    ->label('Familia')
+                    ->label(ucfirst(__('family')))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('brand.name')
-                    ->label('Marca')
+                    ->label(ucfirst(__('brand')))
                     ->sortable()
                     ->searchable(),
 
                 TextColumn::make('tax')
-                    ->label('IVA')
+                    ->label(ucfirst(__('tax')))
                     ->badge(),
 
                 TextColumn::make('sell_status')
+                    ->label(ucfirst(__('sell_status')))
                     ->sortable()
                     ->badge()
                     ->searchable(),

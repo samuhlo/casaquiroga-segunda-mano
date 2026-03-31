@@ -21,11 +21,11 @@ enum SellStatus: string implements HasColor, HasIcon, HasLabel
     public function getLabel(): string
     {
         return match ($this) {
-            SellStatus::Available => __('Available'),
-            SellStatus::InPreparation => __('In Preparation'),
-            SellStatus::ArriveSoon => __('Arrive Soon'),
-            SellStatus::Reserved => __('Reserved'),
-            SellStatus::Sold => __('Sold'),
+            SellStatus::Available => ucfirst(__('Available')),
+            SellStatus::InPreparation => ucfirst(__('In Preparation')),
+            SellStatus::ArriveSoon => ucfirst(__('Arrive Soon')),
+            SellStatus::Reserved => ucfirst(__('Reserved')),
+            SellStatus::Sold => ucfirst(__('Sold')),
         };
     }
 

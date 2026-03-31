@@ -18,7 +18,7 @@ class SecondHandMachinesTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label(__('name'))
+                    ->label(ucfirst(__('name')))
                     ->searchable(),
                 TextColumn::make('brand.name')
                     ->label(ucfirst(__('brand.name')))
@@ -47,7 +47,7 @@ class SecondHandMachinesTable
                         ->label(ucfirst(__('sell_status')))
                         ->options(
                             collect(SellStatus::cases()) // @phpstan-ignore-line
-                                ->mapWithKeys(fn($case) => [
+                                ->mapWithKeys(fn ($case) => [
                                     $case->value => $case->getLabel(),
                                 ])
                                 ->toArray()
@@ -57,7 +57,7 @@ class SecondHandMachinesTable
                         ->label(ucfirst(__('tax')))
                         ->options(
                             collect(Tax::cases()) // @phpstan-ignore-line
-                                ->mapWithKeys(fn($case) => [
+                                ->mapWithKeys(fn ($case) => [
                                     $case->value => $case->getLabel(),
                                 ])
                                 ->toArray()

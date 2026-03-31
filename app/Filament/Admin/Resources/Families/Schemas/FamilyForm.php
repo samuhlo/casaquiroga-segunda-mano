@@ -14,6 +14,7 @@ class FamilyForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label(ucfirst(__('name')))
                     ->required(),
             ]);
     }
