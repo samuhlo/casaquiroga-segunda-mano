@@ -16,7 +16,7 @@ class SecondHandMachinesTable
     {
         return $table
             ->columns([
-                TextColumn::make('nombre')
+                TextColumn::make('name')
                     ->limit(20)
                     ->tooltip(fn ($state) => $state)
                     ->searchable(),
@@ -29,12 +29,12 @@ class SecondHandMachinesTable
                     ->money('EUR')
                     ->sortable(),
 
-                TextColumn::make('family.nombre')
+                TextColumn::make('family.name')
                     ->label('Familia')
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('brand.nombre')
+                TextColumn::make('brand.name')
                     ->label('Marca')
                     ->sortable()
                     ->searchable(),

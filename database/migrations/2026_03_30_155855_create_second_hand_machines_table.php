@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('codigo')->unique();
-            $table->string('nombre');
+            $table->string('name');
 
             // Purchase info
             $table->decimal('coste', 10, 2)->nullable();

@@ -24,26 +24,26 @@ describe('FamilyResource', function () {
     it('can create a family', function () {
         livewire(CreateFamily::class)
             ->fillForm([
-                'nombre' => 'Test Family',
+                'name' => 'Test Family',
             ])
             ->call('create')
             ->assertHasNoFormErrors()
             ->assertNotified();
 
-        expect(Family::where('nombre', 'Test Family')->exists())->toBeTrue();
+        expect(Family::where('name', 'Test Family')->exists())->toBeTrue();
     });
 
     it('can edit a family', function () {
-        $family = Family::factory()->create(['nombre' => 'Old Name']);
+        $family = Family::factory()->create(['name' => 'Old Name']);
 
         livewire(EditFamily::class, ['record' => $family->id])
             ->fillForm([
-                'nombre' => 'New Name',
+                'name' => 'New Name',
             ])
             ->call('save')
             ->assertHasNoFormErrors()
             ->assertNotified();
 
-        expect($family->refresh()->nombre)->toBe('New Name');
+        expect($family->refresh()->name)->toBe('New Name');
     });
 });

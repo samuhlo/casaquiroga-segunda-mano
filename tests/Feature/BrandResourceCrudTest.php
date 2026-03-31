@@ -24,26 +24,26 @@ describe('BrandResource', function () {
     it('can create a Brand', function () {
         livewire(CreateBrand::class)
             ->fillForm([
-                'nombre' => 'Test Brand',
+                'name' => 'Test Brand',
             ])
             ->call('create')
             ->assertHasNoFormErrors()
             ->assertNotified();
 
-        expect(Brand::where('nombre', 'Test Brand')->exists())->toBeTrue();
+        expect(Brand::where('name', 'Test Brand')->exists())->toBeTrue();
     });
 
     it('can edit a Brand', function () {
-        $Brand = Brand::factory()->create(['nombre' => 'Old Name']);
+        $Brand = Brand::factory()->create(['name' => 'Old Name']);
 
         livewire(EditBrand::class, ['record' => $Brand->id])
             ->fillForm([
-                'nombre' => 'New Name',
+                'name' => 'New Name',
             ])
             ->call('save')
             ->assertHasNoFormErrors()
             ->assertNotified();
 
-        expect($Brand->refresh()->nombre)->toBe('New Name');
+        expect($Brand->refresh()->name)->toBe('New Name');
     });
 });

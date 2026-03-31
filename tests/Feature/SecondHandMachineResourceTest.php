@@ -40,17 +40,17 @@ describe('SecondHandMachineResource', function () {
     });
 
     it('can edit a second hand machine', function () {
-        $machine = SecondHandMachine::factory()->create(['nombre' => 'Old Name']);
+        $machine = SecondHandMachine::factory()->create(['name' => 'Old Name']);
 
         livewire(EditSecondHandMachine::class, ['record' => $machine->id])
             ->fillForm([
-                'nombre' => 'New Name',
+                'name' => 'New Name',
             ])
             ->call('save')
             ->assertHasNoFormErrors()
             ->assertNotified();
 
-        expect($machine->refresh()->nombre)->toBe('New Name');
+        expect($machine->refresh()->name)->toBe('New Name');
     });
 
     it('can upload photos and attachments', function () {

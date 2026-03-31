@@ -25,7 +25,7 @@ class SecondHandMachineFactory extends Factory
     {
         return [
             'codigo' => strtoupper($this->faker->bothify('MAQ-####??')),
-            'nombre' => $this->faker->words(3, true),
+            'name' => $this->faker->words(3, true),
             'coste' => $this->faker->randomFloat(2, 500, 50000),
             'responsable_compra_id' => function () {
                 return User::query()

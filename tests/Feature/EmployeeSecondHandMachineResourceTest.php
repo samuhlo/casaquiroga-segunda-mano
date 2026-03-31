@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Enums\Status;
 use App\Filament\Employee\Resources\SecondHandMachines\Pages\ListSecondHandMachines;
 use App\Filament\Employee\Resources\SecondHandMachines\Pages\ViewSecondHandMachine;
-use App\Models\Notes;
 use App\Models\SecondHandMachine;
 use App\Models\User;
 use Filament\Facades\Filament;
@@ -55,7 +54,7 @@ describe('Employee SecondHandMachineResource', function () {
 
         $livewire->assertMountedActionModalSee([
             'new_note',
-            'estado'
+            'estado',
         ]);
 
         $livewire->fillForm([

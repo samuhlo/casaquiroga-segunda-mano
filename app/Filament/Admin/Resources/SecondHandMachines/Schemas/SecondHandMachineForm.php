@@ -26,7 +26,7 @@ class SecondHandMachineForm
         return $schema
             ->components([
                 Section::make('Información general')->schema([
-                    TextInput::make('nombre')
+                    TextInput::make('name')
                         ->required(),
 
                     TextInput::make('codigo')
@@ -34,7 +34,7 @@ class SecondHandMachineForm
 
                     Select::make('family_id')
                         ->searchable()
-                        ->relationship('family', 'nombre')
+                        ->relationship('family', 'name')
                         ->default(null)
                         ->createOptionForm(
                             FamilyForm::configure(
@@ -44,7 +44,7 @@ class SecondHandMachineForm
 
                     Select::make('brand_id')
                         ->searchable()
-                        ->relationship('brand', 'nombre')
+                        ->relationship('brand', 'name')
                         ->default(null)
                         ->createOptionForm(
                             BrandForm::configure(

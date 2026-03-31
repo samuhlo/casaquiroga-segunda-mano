@@ -13,7 +13,7 @@ class FamilyForm
     {
         return $schema
             ->components([
-                TextInput::make('nombre')
+                TextInput::make('name')
                     ->required(),
             ]);
     }

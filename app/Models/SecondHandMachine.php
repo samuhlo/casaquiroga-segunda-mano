@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable([
     'codigo',
-    'nombre',
+    'name',
     'coste',
     'observaciones_compra',
     'modelo',
