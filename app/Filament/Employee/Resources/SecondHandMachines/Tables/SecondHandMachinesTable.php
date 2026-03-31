@@ -11,7 +11,7 @@ use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
-class SecondHandMachinesTable
+final class SecondHandMachinesTable
 {
     public static function configure(Table $table): Table
     {
@@ -20,17 +20,17 @@ class SecondHandMachinesTable
                 TextColumn::make('name')
                     ->label(ucfirst(__('name')))
                     ->limit(20)
-                    ->tooltip(fn (string $state) => $state)
+                    ->tooltip(fn (string $state): string => $state)
                     ->searchable(),
                 TextColumn::make('brand.name')
                     ->label(ucfirst(__('brand.name')))
                     ->limit(20)
-                    ->tooltip(fn (string $state) => $state)
+                    ->tooltip(fn (string $state): string => $state)
                     ->searchable(),
                 TextColumn::make('family.name')
                     ->label(ucfirst(__('family.name')))
                     ->limit(20)
-                    ->tooltip(fn (string $state) => $state)
+                    ->tooltip(fn (string $state): string => $state)
                     ->searchable(),
                 TextColumn::make('model')
                     ->label(ucfirst(__('model')))
@@ -53,20 +53,20 @@ class SecondHandMachinesTable
                         ->label(ucfirst(__('sell_status')))
                         ->options(
                             collect(SellStatus::cases()) // @phpstan-ignore-line
-                                ->mapWithKeys(fn (SellStatus $case) => [
+                                ->mapWithKeys(fn (SellStatus $case): array => [
                                     $case->value => $case->getLabel(),
                                 ])
-                                ->toArray()
+                                ->all()
                         ),
 
                     SelectFilter::make('tax')
                         ->label(ucfirst(__('tax')))
                         ->options(
                             collect(Tax::cases()) // @phpstan-ignore-line
-                                ->mapWithKeys(fn (Tax $case) => [
+                                ->mapWithKeys(fn (Tax $case): array => [
                                     $case->value => $case->getLabel(),
                                 ])
-                                ->toArray()
+                                ->all()
                         ),
 
                 ],

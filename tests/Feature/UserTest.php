@@ -19,8 +19,9 @@ function mockPanel(string $id): Panel
 
     return $panel;
 }
-describe('UserTest', function () {
-    it('creates a valid user from the factory', function () {
+
+describe('UserTest', function (): void {
+    it('creates a valid user from the factory', function (): void {
         $user = User::factory()->create();
 
         expect($user)->toBeInstanceOf(User::class)
@@ -32,7 +33,7 @@ describe('UserTest', function () {
         expect($user)->toBeInstanceOf(Model::class);
     });
 
-    it('correctly identifies admin and employee roles', function () {
+    it('correctly identifies admin and employee roles', function (): void {
         $admin = User::factory()->create(['role' => Role::Admin]);
         $employee = User::factory()->create(['role' => Role::Employee]);
         $user = User::factory()->create(['role' => Role::User]);
@@ -47,7 +48,7 @@ describe('UserTest', function () {
         expect($user->role === Role::Employee)->toBeFalse();
     });
 
-    it('checks panel access for each role', function () {
+    it('checks panel access for each role', function (): void {
         $admin = User::factory()->create(['role' => Role::Admin]);
         $employee = User::factory()->create(['role' => Role::Employee]);
         $user = User::factory()->create(['role' => Role::User]);

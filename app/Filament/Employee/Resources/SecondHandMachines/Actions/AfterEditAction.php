@@ -7,7 +7,7 @@ namespace App\Filament\Employee\Resources\SecondHandMachines\Actions;
 use App\Enums\SellStatus;
 use App\Models\SecondHandMachine;
 
-class AfterEditAction
+final class AfterEditAction
 {
     /**
      * @param  array<string, string>  $data

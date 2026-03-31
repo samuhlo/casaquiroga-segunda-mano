@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Fillable(['description', 'user_id', 'second_hand_machine_id', 'previous_state', 'new_state'])]
-class Notes extends Model
+final class Notes extends Model
 {
     /** @use HasFactory<NotesFactory> */
     use HasFactory;

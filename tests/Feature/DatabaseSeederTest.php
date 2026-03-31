@@ -11,14 +11,14 @@ use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
 uses(LazilyRefreshDatabase::class);
 
-describe('DatabaseSeeder', function () {
-    it('seeds the database without errors', function () {
+describe('DatabaseSeeder', function (): void {
+    it('seeds the database without errors', function (): void {
         $this->seed();
 
-        expect(User::count())->toBeGreaterThan(0);
-        expect(SecondHandMachine::count())->toBeGreaterThan(0);
-        expect(Notes::count())->toBeGreaterThan(0);
-        expect(Brand::count())->toBeGreaterThan(0);
-        expect(Family::count())->toBeGreaterThan(0);
+        expect(User::query()->count())->toBeGreaterThan(0);
+        expect(SecondHandMachine::query()->count())->toBeGreaterThan(0);
+        expect(Notes::query()->count())->toBeGreaterThan(0);
+        expect(Brand::query()->count())->toBeGreaterThan(0);
+        expect(Family::query()->count())->toBeGreaterThan(0);
     });
 });

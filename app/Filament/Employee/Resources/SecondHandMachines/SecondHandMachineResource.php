@@ -15,7 +15,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class SecondHandMachineResource extends Resource
+final class SecondHandMachineResource extends Resource
 {
     protected static ?string $model = SecondHandMachine::class;
 

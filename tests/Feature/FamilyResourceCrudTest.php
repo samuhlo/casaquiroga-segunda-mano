@@ -12,8 +12,8 @@ use function Pest\Livewire\livewire;
 
 uses(LazilyRefreshDatabase::class);
 
-describe('FamilyResource', function () {
-    it('can load the families list page and display records', function () {
+describe('FamilyResource', function (): void {
+    it('can load the families list page and display records', function (): void {
         $families = Family::factory()->count(3)->create();
 
         livewire(ListFamilies::class)
@@ -21,7 +21,7 @@ describe('FamilyResource', function () {
             ->assertCanSeeTableRecords($families);
     });
 
-    it('can create a family', function () {
+    it('can create a family', function (): void {
         livewire(CreateFamily::class)
             ->fillForm([
                 'name' => 'Test Family',
@@ -30,10 +30,10 @@ describe('FamilyResource', function () {
             ->assertHasNoFormErrors()
             ->assertNotified();
 
-        expect(Family::where('name', 'Test Family')->exists())->toBeTrue();
+        expect(Family::query()->where('name', 'Test Family')->exists())->toBeTrue();
     });
 
-    it('can edit a family', function () {
+    it('can edit a family', function (): void {
         $family = Family::factory()->create(['name' => 'Old Name']);
 
         livewire(EditFamily::class, ['record' => $family->id])

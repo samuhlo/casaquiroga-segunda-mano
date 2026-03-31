@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<Brand>
  */
-class BrandFactory extends Factory
+final class BrandFactory extends Factory
 {
     /**
      * Define the model's default state.

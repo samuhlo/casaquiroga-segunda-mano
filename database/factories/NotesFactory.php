@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<Notes>
  */
-class NotesFactory extends Factory
+final class NotesFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -25,7 +25,7 @@ class NotesFactory extends Factory
         $new = $this->faker->randomElement(
             array_filter(
                 SellStatus::cases(),
-                fn ($case) => $case !== $previous
+                fn (SellStatus $case): bool => $case !== $previous
             )
         );
 

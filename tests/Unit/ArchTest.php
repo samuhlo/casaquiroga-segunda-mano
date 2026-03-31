@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
+
 arch()
     ->expect('App')
     ->toUseStrictTypes()
@@ -10,9 +13,9 @@ arch()
 arch()
     ->expect('App\Models')
     ->toBeClasses()
-    ->toExtend('Illuminate\Database\Eloquent\Model')
+    ->toExtend(Model::class)
     // ->toOnlyBeUsedIn('App\Repositories')
-    ->ignoring('App\Models\User');
+    ->ignoring(User::class);
 
 arch()
     ->expect('App\Http')

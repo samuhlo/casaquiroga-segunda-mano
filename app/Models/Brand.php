@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 #[Fillable(['name'])]
-class Brand extends Model
+final class Brand extends Model
 {
     /** @use HasFactory<BrandFactory> */
     use HasFactory;

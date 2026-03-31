@@ -9,7 +9,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Schema;
 
-class SecondHandMachineForm
+final class SecondHandMachineForm
 {
     public static function configure(Schema $schema): Schema
     {

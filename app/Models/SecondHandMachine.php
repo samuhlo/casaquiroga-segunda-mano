@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'customer_id',
     'family_id',
 ])]
-class SecondHandMachine extends Model
+final class SecondHandMachine extends Model
 {
     /** @use HasFactory<SecondHandMachineFactory> */
     use HasFactory;

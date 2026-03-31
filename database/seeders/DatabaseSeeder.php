@@ -12,7 +12,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+final class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
@@ -21,14 +21,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::firstOrCreate(
-            ['email' => 'fran@gmail.com'],
-            [
-                'name' => 'Admin User',
-                'password' => bcrypt('fran@gmail.com'),
-                'role' => Role::Admin,
-            ]
-        );
+        User::query()->firstOrCreate(['email' => 'fran@gmail.com'], [
+            'name' => 'Admin User',
+            'password' => bcrypt('fran@gmail.com'),
+            'role' => Role::Admin,
+        ]);
 
         User::factory(5)->employee()->create();
 

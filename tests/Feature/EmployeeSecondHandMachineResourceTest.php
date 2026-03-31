@@ -14,9 +14,9 @@ use function Pest\Livewire\livewire;
 
 uses(LazilyRefreshDatabase::class);
 
-describe('Employee SecondHandMachineResource', function () {
+describe('Employee SecondHandMachineResource', function (): void {
 
-    beforeEach(function () {
+    beforeEach(function (): void {
         $this->actingAs(User::factory()->employee()->create());
 
         Filament::setCurrentPanel(
@@ -24,7 +24,7 @@ describe('Employee SecondHandMachineResource', function () {
         );
     });
 
-    it('employee can list second hand machines', function () {
+    it('employee can list second hand machines', function (): void {
         $machines = SecondHandMachine::factory()->count(2)->create();
 
         livewire(ListSecondHandMachines::class)
@@ -32,14 +32,14 @@ describe('Employee SecondHandMachineResource', function () {
             ->assertCanSeeTableRecords($machines);
     });
 
-    it('can view the second hand machine', function () {
+    it('can view the second hand machine', function (): void {
         $machine = SecondHandMachine::factory()->create();
 
         livewire(ViewSecondHandMachine::class, ['record' => $machine->id])
             ->assertOk();
     });
 
-    it('can edit status and create a note', function () {
+    it('can edit status and create a note', function (): void {
         $machine = SecondHandMachine::factory()->create([
             'sell_status' => SellStatus::Available,
         ]);

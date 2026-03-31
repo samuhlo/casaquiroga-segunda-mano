@@ -10,7 +10,6 @@ use App\Enums\Tax;
 use App\Filament\Admin\Resources\Brands\Schemas\BrandForm;
 use App\Filament\Admin\Resources\Families\Schemas\FamilyForm;
 use App\Filament\Admin\Resources\Users\Schemas\UserForm;
-use Carbon\Carbon;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -20,8 +19,9 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Date;
 
-class SecondHandMachineForm
+final class SecondHandMachineForm
 {
     public static function configure(Schema $schema): Schema
     {
@@ -190,8 +190,8 @@ class SecondHandMachineForm
                                 TextInput::make('created_at')
                                     ->label(ucfirst(__('created_at')))
                                     ->formatStateUsing(
-                                        fn (mixed $state) => $state
-                                            ? Carbon::parse($state)->format('d-m-Y H:i') // @phpstan-ignore-line
+                                        fn (mixed $state): ?string => $state
+                                            ? Date::parse($state)->format('d-m-Y H:i') // @phpstan-ignore-line
                                             : null
                                     )
                                     ->disabled(),

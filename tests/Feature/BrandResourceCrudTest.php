@@ -12,8 +12,8 @@ use function Pest\Livewire\livewire;
 
 uses(LazilyRefreshDatabase::class);
 
-describe('BrandResource', function () {
-    it('can load the Brands list page and display records', function () {
+describe('BrandResource', function (): void {
+    it('can load the Brands list page and display records', function (): void {
         $Brands = Brand::factory()->count(3)->create();
 
         livewire(ListBrands::class)
@@ -21,7 +21,7 @@ describe('BrandResource', function () {
             ->assertCanSeeTableRecords($Brands);
     });
 
-    it('can create a Brand', function () {
+    it('can create a Brand', function (): void {
         livewire(CreateBrand::class)
             ->fillForm([
                 'name' => 'Test Brand',
@@ -30,10 +30,10 @@ describe('BrandResource', function () {
             ->assertHasNoFormErrors()
             ->assertNotified();
 
-        expect(Brand::where('name', 'Test Brand')->exists())->toBeTrue();
+        expect(Brand::query()->where('name', 'Test Brand')->exists())->toBeTrue();
     });
 
-    it('can edit a Brand', function () {
+    it('can edit a Brand', function (): void {
         $Brand = Brand::factory()->create(['name' => 'Old Name']);
 
         livewire(EditBrand::class, ['record' => $Brand->id])

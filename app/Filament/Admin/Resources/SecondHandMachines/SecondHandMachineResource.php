@@ -16,13 +16,13 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class SecondHandMachineResource extends Resource
+final class SecondHandMachineResource extends Resource
 {
     protected static ?string $model = SecondHandMachine::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Truck;
 
-    public static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): string
     {
         return ucfirst(__('machines_management'));
     }

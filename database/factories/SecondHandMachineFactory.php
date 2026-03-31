@@ -17,30 +17,26 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<SecondHandMachine>
  */
-class SecondHandMachineFactory extends Factory
+final class SecondHandMachineFactory extends Factory
 {
     protected $model = SecondHandMachine::class;
 
     public function definition(): array
     {
         return [
-            'identifier_code' => strtoupper($this->faker->bothify('MAQ-####??')),
+            'identifier_code' => mb_strtoupper($this->faker->bothify('MAQ-####??')),
             'name' => $this->faker->words(3, true),
             'purchase_cost' => $this->faker->randomFloat(2, 500, 50000),
-            'employee_id' => function () {
-                return User::query()
-                    ->where('role', Role::Employee)
-                    ->inRandomOrder()
-                    ->value('id')
-                    ?? User::factory()->employee()->create()->id;
-            },
-            'customer_id' => function () {
-                return User::query()
-                    ->where('role', Role::User)
-                    ->inRandomOrder()
-                    ->value('id')
-                    ?? User::factory()->user()->create()->id;
-            },
+            'employee_id' => fn () => User::query()
+                ->where('role', Role::Employee)
+                ->inRandomOrder()
+                ->value('id')
+                ?? User::factory()->employee()->create()->id,
+            'customer_id' => fn () => User::query()
+                ->where('role', Role::User)
+                ->inRandomOrder()
+                ->value('id')
+                ?? User::factory()->user()->create()->id,
             'purchase_notes' => $this->faker->optional()->sentence(),
             'family_id' => Family::query()
                 ->inRandomOrder()
@@ -50,8 +46,8 @@ class SecondHandMachineFactory extends Factory
                 ->inRandomOrder()
                 ->value('id')
                 ?? Brand::factory()->create()->id,
-            'model' => strtoupper($this->faker->bothify('MOD-??##')),
-            'serial_number' => strtoupper($this->faker->unique()->bothify('SN-????####')),
+            'model' => mb_strtoupper($this->faker->bothify('MOD-??##')),
+            'serial_number' => mb_strtoupper($this->faker->unique()->bothify('SN-????####')),
             'repair_workshop' => $this->faker->randomFloat(2, 1000, 80000),
             'selling_price' => $this->faker->randomFloat(2, 1000, 80000),
             'tax' => $this->faker->randomElement(Tax::cases()),
@@ -65,14 +61,14 @@ class SecondHandMachineFactory extends Factory
 
     public function sinImpuesto(): static
     {
-        return $this->state(fn () => [
+        return $this->state(fn (): array => [
             'tax' => Tax::Zero,
         ]);
     }
 
     public function configure(): static
     {
-        return $this->afterCreating(function (SecondHandMachine $machine) {
+        return $this->afterCreating(function (SecondHandMachine $machine): void {
 
             $users = User::query()
                 ->where('role', Role::Employee)
