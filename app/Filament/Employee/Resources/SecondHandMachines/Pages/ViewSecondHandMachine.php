@@ -23,6 +23,7 @@ class ViewSecondHandMachine extends ViewRecord
     {
         return [
             EditAction::make()
+                ->modalHeading(ucfirst(__('edit_machine')))
                 ->before(function (SecondHandMachine $record) {
                     $this->previous_status = $record->sell_status;
                 })

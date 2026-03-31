@@ -21,7 +21,7 @@ enum Role: string implements HasColor, HasIcon, HasLabel
         return match ($this) {
             Role::Admin => ucfirst(__('admin')),
             Role::Employee => ucfirst(__('employee')),
-            Role::User => ucfirst(__('ser')),
+            Role::User => ucfirst(__('user')),
         };
     }
 

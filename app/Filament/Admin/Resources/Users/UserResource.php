@@ -32,9 +32,14 @@ class UserResource extends Resource
         return ucfirst(__('user'));
     }
 
+    public static function getLabel(): string
+    {
+        return ucfirst(__('user'));
+    }
+
     public static function getPluralLabel(): string
     {
-        return ucfirst(__('second_hand_machines'));
+        return ucfirst(__('users'));
     }
 
     public static function form(Schema $schema): Schema

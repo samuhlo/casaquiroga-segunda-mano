@@ -32,9 +32,14 @@ class FamilyResource extends Resource
         return ucfirst(__('family'));
     }
 
+    public static function getLabel(): string
+    {
+        return ucfirst(__('family'));
+    }
+
     public static function getPluralLabel(): string
     {
-        return ucfirst(__('second_hand_machines'));
+        return ucfirst(__('families'));
     }
 
     public static function form(Schema $schema): Schema

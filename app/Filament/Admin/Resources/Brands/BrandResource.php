@@ -32,6 +32,11 @@ class BrandResource extends Resource
         return ucfirst(__('brand'));
     }
 
+    public static function getLabel(): string
+    {
+        return ucfirst(__('brand'));
+    }
+
     public static function getPluralLabel(): string
     {
         return ucfirst(__('brands'));

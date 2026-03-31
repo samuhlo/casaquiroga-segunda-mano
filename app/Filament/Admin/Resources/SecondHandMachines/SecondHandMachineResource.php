@@ -32,6 +32,11 @@ class SecondHandMachineResource extends Resource
         return ucfirst(__('second_hand_machine'));
     }
 
+    public static function getLabel(): string
+    {
+        return ucfirst(__('second_hand_machine'));
+    }
+
     public static function getPluralLabel(): string
     {
         return ucfirst(__('second_hand_machines'));
