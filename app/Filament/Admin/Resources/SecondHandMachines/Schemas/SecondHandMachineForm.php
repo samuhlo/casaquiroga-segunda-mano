@@ -9,7 +9,9 @@ use App\Enums\Tax;
 use App\Filament\Admin\Resources\Brands\Schemas\BrandForm;
 use App\Filament\Admin\Resources\Families\Schemas\FamilyForm;
 use App\Filament\Admin\Resources\Users\Schemas\UserForm;
+use Carbon\Carbon;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -139,6 +141,36 @@ class SecondHandMachineForm
                     ->columnSpanFull()
                     ->columns(2)
                     ->collapsible(),
+
+                Section::make('Notas')->schema([
+                    Repeater::make('notes')
+                        ->relationship()
+                        ->default([])
+                        ->addable(false)
+                        ->deletable(false)
+                        ->reorderable(false)
+                        ->schema([
+                            Select::make('user_id')
+                                ->relationship('user', 'name')
+                                ->disabled(),
+
+                            TextInput::make('created_at')
+                                ->label('Creada en')
+                                ->formatStateUsing(
+                                    fn ($state) => $state
+                                        ? Carbon::parse($state)->format('d-m-Y H:i') // @phpstan-ignore-line
+                                        : null
+                                )
+                                ->disabled(),
+
+                            Textarea::make('descripcion')
+                                ->disabled()
+                                ->columnSpanFull(),
+                        ])->columns(2),
+                ])
+                    ->columnSpanFull()
+                    ->collapsible()
+                    ->hidden(fn (string $operation): bool => $operation === 'create'),
             ]);
     }
 }

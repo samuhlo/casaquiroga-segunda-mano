@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Enums\Role;
 use App\Models\Brand;
 use App\Models\Family;
 use App\Models\SecondHandMachine;
@@ -20,11 +21,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        User::firstOrCreate(
+            ['email' => 'fran@gmail.com'],
+            [
+                'name' => 'Admin User',
+                'password' => bcrypt('fran@gmail.com'),
+                'role' => Role::Admin,
+            ]
+        );
 
-        Family::factory(3)->create();
+        User::factory(5)->employee()->create();
 
-        Brand::factory(3)->create();
+        User::factory(5)->user()->create();
+
+        Family::factory(5)->create();
+
+        Brand::factory(5)->create();
 
         SecondHandMachine::factory(10)->create();
     }

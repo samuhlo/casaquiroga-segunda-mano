@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\Role;
 use App\Enums\Status;
 use App\Enums\Tax;
 use App\Models\Brand;
 use App\Models\Family;
+use App\Models\Notes;
 use App\Models\SecondHandMachine;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -25,11 +27,29 @@ class SecondHandMachineFactory extends Factory
             'codigo' => strtoupper($this->faker->bothify('MAQ-####??')),
             'nombre' => $this->faker->words(3, true),
             'coste' => $this->faker->randomFloat(2, 500, 50000),
-            'responsable_compra_id' => User::factory()->employee(),
-            'cliente_compra_id' => User::factory()->user(),
+            'responsable_compra_id' => function () {
+                return User::query()
+                    ->where('role', Role::Employee)
+                    ->inRandomOrder()
+                    ->value('id')
+                    ?? User::factory()->employee()->create()->id;
+            },
+            'cliente_compra_id' => function () {
+                return User::query()
+                    ->where('role', Role::User)
+                    ->inRandomOrder()
+                    ->value('id')
+                    ?? User::factory()->user()->create()->id;
+            },
             'observaciones_compra' => $this->faker->optional()->sentence(),
-            'family_id' => Family::factory(),
-            'brand_id' => Brand::factory(),
+            'family_id' => Family::query()
+                ->inRandomOrder()
+                ->value('id')
+                ?? Family::factory()->create()->id,
+            'brand_id' => Brand::query()
+                ->inRandomOrder()
+                ->value('id')
+                ?? Brand::factory()->create()->id,
             'modelo' => strtoupper($this->faker->bothify('MOD-??##')),
             'numero_serie' => strtoupper($this->faker->unique()->bothify('SN-????####')),
             'taller_reparacion' => $this->faker->randomFloat(2, 1000, 80000),
@@ -45,22 +65,48 @@ class SecondHandMachineFactory extends Factory
 
     public function disponible(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn () => [
             'estado' => Status::Disponible,
         ]);
     }
 
     public function vendida(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn () => [
             'estado' => Status::Vendida,
         ]);
     }
 
     public function sinImpuesto(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn () => [
             'tax' => Tax::Zero,
         ]);
+    }
+
+    public function configure(): static
+    {
+        return $this->afterCreating(function (SecondHandMachine $machine) {
+
+            $users = User::query()
+                ->where('role', Role::Employee)
+                ->inRandomOrder()
+                ->take(2)
+                ->pluck('id');
+
+            // If not enough users exist, create them
+            while ($users->count() < 2) {
+                $users->push(
+                    User::factory()->employee()->create()->id
+                );
+            }
+
+            foreach ($users as $userId) {
+                Notes::factory()->create([
+                    'second_hand_machine_id' => $machine->id,
+                    'user_id' => $userId,
+                ]);
+            }
+        });
     }
 }
