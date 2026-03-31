@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Enums\Role;
-use App\Enums\Status;
+use App\Enums\SellStatus;
 use App\Enums\Tax;
 use App\Models\Brand;
 use App\Models\Family;
@@ -57,24 +57,10 @@ class SecondHandMachineFactory extends Factory
             'tax' => $this->faker->randomElement(Tax::cases()),
             'work_hours' => $this->faker->numberBetween(0, 10000),
             'description' => $this->faker->optional()->paragraph(),
-            'sell_status' => $this->faker->randomElement(Status::cases()),
+            'sell_status' => $this->faker->randomElement(SellStatus::cases()),
             'fotos' => null,
             'adjuntos' => null,
         ];
-    }
-
-    public function disponible(): static
-    {
-        return $this->state(fn() => [
-            'sell_status' => Status::Disponible,
-        ]);
-    }
-
-    public function vendida(): static
-    {
-        return $this->state(fn() => [
-            'sell_status' => Status::Vendida,
-        ]);
     }
 
     public function sinImpuesto(): static

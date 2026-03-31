@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Employee\Resources\SecondHandMachines\Schemas;
 
-use App\Enums\Status;
+use App\Enums\SellStatus;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Schema;
@@ -17,7 +17,7 @@ class SecondHandMachineForm
             ->components([
                 ToggleButtons::make('sell_status')
                     ->label('Estado')
-                    ->options(Status::class)
+                    ->options(SellStatus::class)
                     ->required()
                     ->inline(),
 

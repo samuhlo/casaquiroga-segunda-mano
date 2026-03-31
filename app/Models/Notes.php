@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\Status;
+use App\Enums\SellStatus;
 use Database\Factories\NotesFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,8 +18,8 @@ class Notes extends Model
     use HasFactory;
 
     protected $casts = [
-        'previous_state' => Status::class,
-        'new_state' => Status::class,
+        'previous_state' => SellStatus::class,
+        'new_state' => SellStatus::class,
     ];
 
     /**

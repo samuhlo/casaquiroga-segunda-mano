@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Employee\Resources\SecondHandMachines\Tables;
 
-use App\Enums\Status;
+use App\Enums\SellStatus;
 use App\Enums\Tax;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
@@ -38,7 +38,7 @@ class SecondHandMachinesTable
                 [
                     SelectFilter::make('sell_status')
                         ->options(
-                            collect(Status::cases()) // @phpstan-ignore-line
+                            collect(SellStatus::cases()) // @phpstan-ignore-line
                                 ->mapWithKeys(fn($case) => [
                                     $case->value => $case->getLabel(),
                                 ])

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Enums\Status;
+use App\Enums\SellStatus;
 use App\Enums\Tax;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -41,7 +41,7 @@ return new class extends Migration
             // Extra
             $table->integer('work_hours')->nullable();
             $table->text('description')->nullable();
-            $table->string('sell_status')->default(Status::Disponible->value);
+            $table->string('sell_status')->default(SellStatus::Available->value);
 
             // Files
             $table->json('fotos')->nullable();

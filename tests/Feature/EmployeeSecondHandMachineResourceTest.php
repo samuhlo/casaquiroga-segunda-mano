@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Enums\Status;
+use App\Enums\SellStatus;
 use App\Filament\Employee\Resources\SecondHandMachines\Pages\ListSecondHandMachines;
 use App\Filament\Employee\Resources\SecondHandMachines\Pages\ViewSecondHandMachine;
 use App\Models\SecondHandMachine;
@@ -58,14 +58,14 @@ describe('Employee SecondHandMachineResource', function () {
         ]);
 
         $livewire->fillForm([
-            'sell_status' => Status::Vendida,
+            'sell_status' => SellStatus::Sold,
             'new_note' => 'Nueva nota de prueba',
         ])
             ->callMountedAction();
 
         $machine->refresh();
 
-        expect($machine->sell_status)->toBe(Status::Vendida);
+        expect($machine->sell_status)->toBe(SellStatus::Sold);
 
         $note = $machine->notes->last();
 

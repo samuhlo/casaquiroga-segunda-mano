@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Employee\Resources\SecondHandMachines\Pages;
 
-use App\Enums\Status;
+use App\Enums\SellStatus;
 use App\Filament\Employee\Resources\SecondHandMachines\Actions\AfterEditAction;
 use App\Filament\Employee\Resources\SecondHandMachines\SecondHandMachineResource;
 use App\Models\SecondHandMachine;
@@ -13,7 +13,7 @@ use Filament\Resources\Pages\ViewRecord;
 
 class ViewSecondHandMachine extends ViewRecord
 {
-    protected Status $previous_status;
+    protected SellStatus $previous_status;
 
     protected static string $resource = SecondHandMachineResource::class;
 

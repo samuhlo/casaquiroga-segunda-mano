@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\Status;
+use App\Enums\SellStatus;
 use App\Enums\Tax;
 use Database\Factories\SecondHandMachineFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -43,7 +43,7 @@ class SecondHandMachine extends Model
         'selling_price' => 'decimal:2',
         'taller_reparacion' => 'decimal:2',
         'tax' => Tax::class,
-        'sell_status' => Status::class,
+        'sell_status' => SellStatus::class,
         'work_hours' => 'integer',
         'fotos' => 'array',
         'adjuntos' => 'array',

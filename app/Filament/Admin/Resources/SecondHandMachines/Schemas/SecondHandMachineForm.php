@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Admin\Resources\SecondHandMachines\Schemas;
 
-use App\Enums\Status;
+use App\Enums\SellStatus;
 use App\Enums\Tax;
 use App\Filament\Admin\Resources\Brands\Schemas\BrandForm;
 use App\Filament\Admin\Resources\Families\Schemas\FamilyForm;
@@ -101,8 +101,8 @@ class SecondHandMachineForm
 
                 Section::make('Información venta')->schema([
                     ToggleButtons::make('sell_status')
-                        ->options(Status::class)
-                        ->default(Status::Disponible)
+                        ->options(SellStatus::class)
+                        ->default(SellStatus::Available)
                         ->inline()
                         ->columnSpanFull()
                         ->required(),
@@ -165,11 +165,11 @@ class SecondHandMachineForm
 
                             TextInput::make('previous_state')
                                 ->disabled()
-                                ->formatStateUsing(fn($state) => Status::tryFrom($state)?->getLabel()),  // @phpstan-ignore-line
+                                ->formatStateUsing(fn($state) => SellStatus::tryFrom($state)?->getLabel()),  // @phpstan-ignore-line
 
                             TextInput::make('new_state')
                                 ->disabled()
-                                ->formatStateUsing(fn($state) => Status::tryFrom($state)?->getLabel()), // @phpstan-ignore-line
+                                ->formatStateUsing(fn($state) => SellStatus::tryFrom($state)?->getLabel()), // @phpstan-ignore-line
 
                             Textarea::make('description')
                                 ->disabled()

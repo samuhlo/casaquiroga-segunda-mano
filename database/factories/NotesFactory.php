@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Enums\Status;
+use App\Enums\SellStatus;
 use App\Models\Notes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,11 +20,11 @@ class NotesFactory extends Factory
      */
     public function definition(): array
     {
-        $previous = $this->faker->randomElement(Status::cases());
+        $previous = $this->faker->randomElement(SellStatus::cases());
 
         $new = $this->faker->randomElement(
             array_filter(
-                Status::cases(),
+                SellStatus::cases(),
                 fn($case) => $case !== $previous
             )
         );
