@@ -17,11 +17,13 @@ uses(LazilyRefreshDatabase::class);
 
 describe('UserResource', function (): void {
     it('can load the users list page and display records', function (): void {
-        $users = User::factory()->count(3)->create();
+        $admin = User::factory()->admin()->create();
+        $employee = User::factory()->employee()->create();
+        $user = User::factory()->user()->create();
 
         livewire(ListUsers::class)
             ->assertOk()
-            ->assertCanSeeTableRecords($users);
+            ->assertCanSeeTableRecords([$admin, $employee, $user]);
     });
 
     it('can create a user', function (): void {
