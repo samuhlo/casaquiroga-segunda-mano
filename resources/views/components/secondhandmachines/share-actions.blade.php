@@ -12,14 +12,14 @@
         panel: false,
         copied: false,
         campos: {
-            imagenes:    true,
-            marca:       true,
-            modelo:      true,
-            codigo:      true,
-            horas:       true,
-            precio:      true,
-            descripcion: true,
-            estado:      false,
+            photos:          true,
+            brand:           true,
+            model:           true,
+            identifier_code: true,
+            work_hours:      true,
+            selling_price:   true,
+            description:     true,
+            sell_status:     false,
         },
         exportar() {
             const params = new URLSearchParams();
@@ -38,25 +38,25 @@
 
     </div>
 
-    <div x-show="panel" style="display:none" class="rounded-2xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 p-5 flex flex-col gap-4">
+    <div x-show="panel" style="display:none" class="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 flex flex-col gap-4 transition-all duration-200 hover:shadow-lg">
         <div>
-            <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
+            <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-3">
                 Incluir en el documento
             </p>
             <div class="grid grid-cols-2 gap-2">
                 @foreach([
-                'imagenes' => 'Imágenes',
-                'marca' => 'Marca',
-                'modelo' => 'Modelo',
-                'codigo' => 'Código ref.',
-                'horas' => 'Horas de uso',
-                'precio' => 'Precio',
-                'descripcion' => 'Descripción',
-                'estado' => 'Estado',
+                'photos' => 'Imágenes',
+                'brand' => 'Marca',
+                'model' => 'Modelo',
+                'identifier_code' => 'Código ref.',
+                'work_hours' => 'Horas de uso',
+                'selling_price' => 'Precio',
+                'description' => 'Descripción',
+                'sell_status' => 'Estado',
                 ] as $key => $label)
                 <label class="flex items-center gap-3 cursor-pointer group">
                     <x-toggle-switch :model="'campos.' . $key" />
-                    <span class="text-sm text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                    <span class="text-sm text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
                         {{ $label }}
                     </span>
                 </label>

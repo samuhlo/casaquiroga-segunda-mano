@@ -12,23 +12,27 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Assets\Css;
 use Filament\Support\Colors\Color;
+use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 final class EmployeePanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        FilamentAsset::register([
+            Css::make('app-css', Vite::asset('resources/css/app.css')),
+        ]);
+
         return $panel
             ->id('employee')
             ->path('empleado')
             ->login()
-            ->assets($this->getAppAssets())
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -51,20 +55,5 @@ final class EmployeePanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
-    }
-
-    /**
-     * @return list<Css>
-     */
-    private function getAppAssets(): array
-    {
-        /** @var array<string> $files */
-        $files = File::glob(public_path('build/assets/app-*.css'));
-
-        $cssFile = collect($files)
-            ->map(fn (string $path): string => basename($path))
-            ->first();
-
-        return $cssFile ? [Css::make('app-css', asset('build/assets/'.$cssFile))] : [];
     }
 }
