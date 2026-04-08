@@ -32,6 +32,7 @@ final class EmployeePanelProvider extends PanelProvider
             ->id('employee')
             ->path('empleado')
             ->login()
+            ->brandLogo(asset('images/cq-logo.jpg'))
             ->discoverResources(in: app_path('Filament/Employee/Resources'), for: 'App\Filament\Employee\Resources')
             ->discoverPages(in: app_path('Filament/Employee/Pages'), for: 'App\Filament\Employee\Pages')
             ->pages([])
