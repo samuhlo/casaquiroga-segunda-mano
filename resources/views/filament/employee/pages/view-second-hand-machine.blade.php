@@ -3,6 +3,7 @@
         [x-cloak] {
             display: none !important
         }
+
         .fade-up {
             animation: fadeUp 0.5s cubic-bezier(0.22, 0.68, 0, 1.2) both;
         }
@@ -67,11 +68,11 @@
                 </h1>
             </div>
 
-            <x-filament::card class="fade-up p-5 bg-gray-950 dark:bg-gray-900 border-transparent" style="animation-delay: var(--anim-precio);">
-                <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-1">{{ ucfirst(__('selling_price'))}}</p>
-                <p class="text-4xl font-bold text-white leading-none">
+            <x-filament::card class="fade-up p-5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700" style="animation-delay: var(--anim-precio);">
+                <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-1">{{ ucfirst(__('selling_price'))}}</p>
+                <p class="text-4xl font-bold text-gray-950 dark:text-white leading-none">
                     {{ number_format($record->selling_price, 0, ',', '.') }}
-                    <span class="text-xl font-normal text-gray-500">€</span>
+                    <span class="text-xl font-normal text-gray-500 dark:text-gray-400">€</span>
                 </p>
             </x-filament::card>
 
