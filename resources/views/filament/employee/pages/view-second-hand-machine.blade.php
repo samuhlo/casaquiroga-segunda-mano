@@ -4,45 +4,6 @@
             display: none !important
         }
 
-    </style>
-
-    @php
-    $record = $this->getRecord();
-
-    $badgeColor = match($record->sell_status?->value) {
-    'disponible' => 'success',
-    'reservada' => 'warning',
-    'vendida' => 'danger',
-    'en_preparacion' => 'gray',
-    'proxima_entrada' => 'info',
-    default => 'gray',
-    };
-
-    $badgeLabel = match($record->sell_status?->getLabel()){
-    'disponible' => 'Disponible',
-    'reservada' => 'Reservada',
-    'vendida' => 'Vendida',
-    'en_preparacion' => 'En preparacion',
-    'proxima_entrada' => 'Entrada Proxima',
-    default => $record->sell_status?->getLabel(),
-    };
-
-    $anim = [
-    'badge' => 0,
-    'titulo' => 100,
-    'precio' => 200,
-    'specs' => 300,
-    'spec1' => 0,
-    'spec2' => 100,
-    'spec3' => 200,
-    'spec4' => 300,
-    'desc' => 400,
-    'acciones' => 500,
-    'slider' => 150,
-    ];
-    @endphp
-
-    <style>
         .fade-up {
             animation: fadeUp 0.5s cubic-bezier(0.22, 0.68, 0, 1.2) both;
         }
