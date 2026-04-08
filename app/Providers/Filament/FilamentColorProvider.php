@@ -44,7 +44,7 @@ final class FilamentColorProvider extends ServiceProvider
             'info' => Color::Blue,
             'danger' => Color::Red,
             'success' => Color::Green,
-            'warning' => Color::Amber,
+            'warning' => Color::Orange,
         ]);
     }
 }
