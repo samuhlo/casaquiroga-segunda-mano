@@ -21,16 +21,16 @@ final class SecondHandMachinesTable
                 TextColumn::make('identifier_code')
                     ->label(ucfirst(__('identifier_code')))
                     ->limit(20)
-                    ->tooltip(fn(string $state): string => $state),
+                    ->tooltip(fn (string $state): string => $state),
                 TextColumn::make('name')
                     ->label(ucfirst(__('name')))
                     ->limit(20)
-                    ->tooltip(fn(string $state): string => $state)
+                    ->tooltip(fn (string $state): string => $state)
                     ->searchable(),
                 TextColumn::make('brand.name')
                     ->label(ucfirst(__('brand.name')))
                     ->limit(20)
-                    ->tooltip(fn(string $state): string => $state)
+                    ->tooltip(fn (string $state): string => $state)
                     ->searchable(),
                 TextColumn::make('model')
                     ->label(ucfirst(__('model')))
@@ -52,7 +52,7 @@ final class SecondHandMachinesTable
                         ->label(ucfirst(__('sell_status')))
                         ->options(
                             collect(SellStatus::cases())
-                                ->mapWithKeys(fn(SellStatus $case): array => [
+                                ->mapWithKeys(fn (SellStatus $case): array => [
                                     $case->value => $case->getLabel(),
                                 ])
                                 ->all()
@@ -62,7 +62,7 @@ final class SecondHandMachinesTable
                         ->label(ucfirst(__('tax')))
                         ->options(
                             collect(Tax::cases())
-                                ->mapWithKeys(fn(Tax $case): array => [
+                                ->mapWithKeys(fn (Tax $case): array => [
                                     $case->value => $case->getLabel(),
                                 ])
                                 ->all()
