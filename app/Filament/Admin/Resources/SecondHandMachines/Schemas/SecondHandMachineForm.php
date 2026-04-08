@@ -76,9 +76,6 @@ final class SecondHandMachineForm
 
                         TextInput::make('repair_workshop')
                             ->label(ucfirst(__('repair_workshop')))
-                            ->numeric()
-                            ->suffix('€')
-                            ->step(0.01)
                             ->default(null),
 
                         TextInput::make('work_hours')

@@ -41,7 +41,6 @@ final class SecondHandMachine extends Model
     protected $casts = [
         'purchase_cost' => 'decimal:2',
         'selling_price' => 'decimal:2',
-        'repair_workshop' => 'decimal:2',
         'tax' => Tax::class,
         'sell_status' => SellStatus::class,
         'work_hours' => 'integer',
