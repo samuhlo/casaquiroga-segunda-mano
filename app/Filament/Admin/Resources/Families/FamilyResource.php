@@ -20,7 +20,9 @@ final class FamilyResource extends Resource
 {
     protected static ?string $model = Family::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::UserGroup;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::RectangleGroup;
+
+    protected static ?int $navigationSort = 5;
 
     public static function getNavigationGroup(): string
     {

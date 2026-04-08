@@ -32,18 +32,6 @@ final class UserForm
             TextInput::make('name')
                 ->label(ucfirst(__('name')))
                 ->required(),
-
-            TextInput::make('email')
-                ->label(ucfirst(__('email')))
-                ->email()
-                ->required(),
-
-            TextInput::make('password')
-                ->label(ucfirst(__('password')))
-                ->password()
-                ->dehydrated(fn (mixed $state): bool => filled($state))
-                ->dehydrateStateUsing(fn (?string $state) => filled($state) ? Hash::make($state) : null)
-                ->required(fn (string $context): bool => $context === 'create'),
         ];
     }
 
@@ -52,12 +40,27 @@ final class UserForm
      */
     public static function fullFields(): array
     {
-        return array_merge(self::baseFields(), [
-            Select::make('role')
-                ->label(ucfirst(__('role')))
-                ->options(Role::class)
-                ->default(Role::User)
-                ->required(),
-        ]);
+        return array_merge(
+            self::baseFields(),
+            [
+                TextInput::make('email')
+                    ->label(ucfirst(__('email')))
+                    ->email()
+                    ->required(fn (string $context): bool => $context === 'create'),
+
+                TextInput::make('password')
+                    ->label(ucfirst(__('password')))
+                    ->password()
+                    ->dehydrated(fn (mixed $state): bool => filled($state))
+                    ->dehydrateStateUsing(fn (?string $state) => filled($state) ? Hash::make($state) : null)
+                    ->required(fn (string $context): bool => $context === 'create'),
+
+                Select::make('role')
+                    ->label(ucfirst(__('role')))
+                    ->options(Role::class)
+                    ->default(Role::User)
+                    ->required(),
+            ]
+        );
     }
 }

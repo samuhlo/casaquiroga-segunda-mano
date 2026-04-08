@@ -8,12 +8,6 @@
      ============================================================================= --}}
 @props(['images' => [], 'alt' => ''])
 
-@php
-// Asegurar que images es un array
-$imagesArray = is_array($images) ? $images : [];
-$hasImages = !empty($imagesArray);
-@endphp
-
 <style>
     .custom-scrollbar::-webkit-scrollbar {
         width: 4px;
@@ -30,10 +24,16 @@ $hasImages = !empty($imagesArray);
 
 </style>
 
+@php
+// Asegurar que images es un array
+$imagesArray = is_array($images) ? $images : [];
+$hasImages = !empty($imagesArray);
+@endphp
+
 @if(!$hasImages)
 <div class="w-full flex flex-col items-center justify-center gap-3 text-gray-300 rounded-3xl bg-gray-50 dark:bg-gray-800" style="height:600px;">
     <x-heroicon-o-photo class="w-16 h-16" />
-    <span class="text-sm font-medium">Sin imagen</span>
+    <span class="text-sm font-medium">{{ ucfirst('no ' . __('photos')) }}</span>
 </div>
 @else
 <div x-data="{
@@ -62,7 +62,7 @@ $hasImages = !empty($imagesArray);
                     <div x-show="!loaded[indice]" class="absolute inset-0 flex items-center justify-center">
                         <x-filament::loading-indicator class="h-4 w-4 text-gray-400" />
                     </div>
-                    <img :src="imagen" @load="loaded[indice] = true" class="w-full h-full object-cover">
+                    <img :src="`/storage/${imagen}`" @load="loaded[indice] = true" class="w-full h-full object-cover">
                 </button>
             </template>
         </div>
@@ -78,7 +78,7 @@ $hasImages = !empty($imagesArray);
         </div>
 
         <template x-for="(imagen, indice) in imagenes" :key="indice">
-            <img x-show="diapositivaActual === indice" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" :src="imagen" @load="loaded[indice] = true" alt="{{ $alt }}" class="absolute inset-0 w-full h-full object-cover">
+            <img x-show="diapositivaActual === indice" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" :src="`/storage/${imagen}`" @load="loaded[indice] = true" alt="{{ $alt }}" class="absolute inset-0 w-full h-full object-cover">
         </template>
 
         @if(count($imagesArray) > 1)

@@ -35,7 +35,7 @@ return new class extends Migration
 
             // Sale info
             $table->decimal('selling_price', 10, 2)->nullable();
-            $table->decimal('repair_workshop', 10, 2)->nullable();
+            $table->tinyText('repair_workshop')->nullable();
             $table->tinyInteger('tax')->default(Tax::Zero->value);
 
             // Extra

@@ -76,9 +76,6 @@ final class SecondHandMachineForm
 
                         TextInput::make('repair_workshop')
                             ->label(ucfirst(__('repair_workshop')))
-                            ->numeric()
-                            ->suffix('€')
-                            ->step(0.01)
                             ->default(null),
 
                         TextInput::make('work_hours')
@@ -92,26 +89,6 @@ final class SecondHandMachineForm
                             ->columnSpanFull(),
                     ])
                     ->columns(2)
-                    ->columnSpanFull()
-                    ->collapsible(),
-
-                Section::make(ucfirst(__('attachments')))
-                    ->schema([
-                        FileUpload::make('photos')
-                            ->label(ucfirst(__('photos')))
-                            ->image()
-                            ->multiple()
-                            ->directory('secondhandmachines/photos')
-                            ->visibility('public')
-                            ->panelLayout('grid'),
-
-                        FileUpload::make('attachments')
-                            ->label(ucfirst(__('attachments')))
-                            ->multiple()
-                            ->directory('secondhandmachines/attachments')
-                            ->visibility('public')
-                            ->panelLayout('grid'),
-                    ])
                     ->columnSpanFull()
                     ->collapsible(),
 
@@ -169,6 +146,28 @@ final class SecondHandMachineForm
                     ])
                     ->columnSpanFull()
                     ->columns(2)
+                    ->collapsible(),
+
+                Section::make(ucfirst(__('attachments')))
+                    ->schema([
+                        FileUpload::make('photos')
+                            ->label(ucfirst(__('photos')))
+                            ->hint(ucfirst(__('photos_hint')))
+                            ->image()
+                            ->multiple()
+                            ->directory('secondhandmachines/photos')
+                            ->visibility('public')
+                            ->panelLayout('grid')
+                            ->reorderable(),
+
+                        FileUpload::make('attachments')
+                            ->label(ucfirst(__('attachments')))
+                            ->multiple()
+                            ->directory('secondhandmachines/attachments')
+                            ->visibility('public')
+                            ->panelLayout('grid'),
+                    ])
+                    ->columnSpanFull()
                     ->collapsible(),
 
                 Section::make(ucfirst(__('product_notes')))

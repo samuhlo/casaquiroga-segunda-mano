@@ -6,6 +6,7 @@ namespace App\Filament\Employee\Resources\SecondHandMachines\Tables;
 
 use App\Enums\SellStatus;
 use App\Enums\Tax;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
@@ -17,6 +18,10 @@ final class SecondHandMachinesTable
     {
         return $table
             ->columns([
+                TextColumn::make('identifier_code')
+                    ->label(ucfirst(__('identifier_code')))
+                    ->limit(20)
+                    ->tooltip(fn (string $state): string => $state),
                 TextColumn::make('name')
                     ->label(ucfirst(__('name')))
                     ->limit(20)
@@ -27,26 +32,20 @@ final class SecondHandMachinesTable
                     ->limit(20)
                     ->tooltip(fn (string $state): string => $state)
                     ->searchable(),
-                TextColumn::make('family.name')
-                    ->label(ucfirst(__('family.name')))
-                    ->limit(20)
-                    ->tooltip(fn (string $state): string => $state)
-                    ->searchable(),
                 TextColumn::make('model')
                     ->label(ucfirst(__('model')))
                     ->searchable(),
                 TextColumn::make('selling_price')
                     ->label(ucfirst(__('selling_price')))
+                    ->icon(Heroicon::CurrencyEuro)
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('tax')
-                    ->label(ucfirst(__('tax')))
-                    ->badge(),
                 TextColumn::make('sell_status')
                     ->label(ucfirst(__('sell_status')))
                     ->badge()
                     ->searchable(),
             ])
+            ->defaultSort('created_at', direction: 'desc')
             ->filters(
                 [
                     SelectFilter::make('sell_status')
