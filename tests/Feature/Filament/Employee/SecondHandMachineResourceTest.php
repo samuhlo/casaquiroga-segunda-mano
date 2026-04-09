@@ -46,16 +46,12 @@ describe('Employee SecondHandMachineResource', function (): void {
 
         $livewire = livewire(ViewSecondHandMachine::class, [
             'record' => $machine->id,
-        ]);
-
-        $livewire->mountAction('edit');
-
-        $livewire->assertActionMounted('edit');
-
-        $livewire->assertMountedActionModalSee([
-            'note_description',
-            'sell_status',
-        ]);
+        ])->mountAction('edit')
+            ->assertActionMounted('edit')
+            ->assertMountedActionModalSee([
+                'note_description',
+                'sell_status',
+            ]);
 
         $livewire->fillForm([
             'sell_status' => SellStatus::Sold,
@@ -71,5 +67,17 @@ describe('Employee SecondHandMachineResource', function (): void {
 
         expect($note)->not->toBeNull();
         expect($note->description)->toBe('Nueva nota de prueba');
+    });
+
+    it('can download a pdf', function (): void {
+        $machine = SecondHandMachine::factory()->create([
+            'sell_status' => SellStatus::Available,
+        ]);
+
+        livewire(ViewSecondHandMachine::class, [
+            'record' => $machine->id,
+        ])
+            ->assertActionExists('download_pdf')
+            ->call('mountAction', 'download_pdf');
     });
 });

@@ -90,10 +90,6 @@
             </x-filament::card>
             @endif
 
-            <div class="fade-up" style="animation-delay: var(--anim-acciones);">
-                <x-secondhandmachines.share-actions :maquina="$record" />
-            </div>
-
         </div>
 
         {{-- COLUMNA DERECHA — slider de imágenes --}}

@@ -8,7 +8,6 @@
          █ [BLADE_PAGE] :: secondhandmachine-print-page
          DESC:   Vista de impresión/PDF para máquina de segunda mano.
          VAR:    $machine (SecondHandMachine) — inyectado desde SecondHandMachinePrintController
-                 $show_fields (array) — campos a incluir en el documento
          ADAPT: ORIGEN: maquina-product-page → DESTINO: SecondHandMachine
          STATUS: STABLE
          ============================================================================= --}}
@@ -312,14 +311,14 @@
             <div class="header-right">
                 <p class="ref-label">{{ ucfirst(__('identifier_code')) }}</p>
                 <p class="ref">{{ $machine->identifier_code }}</p>
-                @if(in_array('sell_status', $show_fields) && $machine->sell_status)
+                @if($machine->sell_status)
                     <span class="badge">{{ $machine->sell_status->getLabel() }}</span>
                 @endif
             </div>
         </div>
 
         {{-- IMÁGENES --}}
-        @if(in_array('photos', $show_fields) && $machine->photos && count($machine->photos) > 0)
+        @if($machine->photos && count($machine->photos) > 0)
             @php
             $imgs = array_slice($machine->photos, 0, 3);
             $cols = count($imgs) === 1 ? 'cols-1' : (count($imgs) === 2 ? 'cols-2' : 'cols-3');
@@ -332,23 +331,21 @@
         @endif
 
         {{-- PRECIO --}}
-        @if(in_array('selling_price', $show_fields))
-            <div class="price-box">
-                <p class="price-label">{{ ucfirst(__('selling_price')) }}</p>
-                <p class="price-value">
-                    {{ number_format($machine->selling_price, 0, ',', '.') }}
-                    <span class="price-currency">EUR</span>
-                </p>
-            </div>
-        @endif
+        <div class="price-box">
+            <p class="price-label">{{ ucfirst(__('selling_price')) }}</p>
+            <p class="price-value">
+                {{ number_format($machine->selling_price, 0, ',', '.') }}
+                <span class="price-currency">EUR</span>
+            </p>
+        </div>
 
         {{-- SPECS --}}
         @php
             $specs = [];
-            if (in_array('brand', $show_fields)) $specs[] = [ucfirst(__('brand')), $machine->brand?->name ?? '—', false];
-            if (in_array('model', $show_fields)) $specs[] = [ucfirst(__('model')), $machine->model ?? '—', false];
-            if (in_array('work_hours', $show_fields)) $specs[] = [ucfirst(__('work_hours')), number_format($machine->work_hours ?? 0, 0, ',', '.') . ' h', false];
-            if (in_array('identifier_code', $show_fields)) $specs[] = [ucfirst(__('identifier_code')), $machine->identifier_code ?? '—', true];
+            $specs[] = [ucfirst(__('brand')), $machine->brand?->name ?? '—', false];
+            $specs[] = [ucfirst(__('model')), $machine->model ?? '—', false];
+            $specs[] = [ucfirst(__('work_hours')), number_format($machine->work_hours ?? 0, 0, ',', '.') . ' h', false];
+            $specs[] = [ucfirst(__('identifier_code')), $machine->identifier_code ?? '—', true];
         @endphp
 
         @if(count($specs))
@@ -363,7 +360,7 @@
         @endif
 
         {{-- DESCRIPCIÓN --}}
-        @if(in_array('description', $show_fields) && $machine->description)
+        @if($machine->description)
             <p class="section-label">{{ ucfirst(__('description'))}}</p>
             <div class="description">{{ $machine->description }}</div>
         @endif
@@ -375,18 +372,5 @@
         </div>
 
     </div>
-
-    {{-- Botones solo en pantalla, no al imprimir --}}
-    <div class="screen-actions no-print">
-        <button class="btn btn-secondary" onclick="window.close()">{{ ucfirst(__('close'))}}</button>
-        <button class="btn btn-primary" onclick="window.print()">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-                <rect x="6" y="14" width="12" height="8" />
-            </svg>
-            {{ ucfirst(__('print / save PDF')) }}
-        </button>
-    </div>
-
 </body>
 </html>

@@ -8,8 +8,12 @@ use App\Enums\SellStatus;
 use App\Filament\Employee\Resources\SecondHandMachines\Actions\AfterEditAction;
 use App\Filament\Employee\Resources\SecondHandMachines\SecondHandMachineResource;
 use App\Models\SecondHandMachine;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Filament\Actions\Action;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
+use Filament\Support\Icons\Heroicon;
+use Illuminate\Support\Facades\Blade;
 
 final class ViewSecondHandMachine extends ViewRecord
 {
@@ -30,6 +34,14 @@ final class ViewSecondHandMachine extends ViewRecord
                 ->after(function (SecondHandMachine $record, array $data): void {
                     AfterEditAction::saveNote($record, $data, $this->previous_status); // @phpstan-ignore-line
                 }),
+            Action::make('download_pdf')
+                ->label(ucfirst(__('download_pdf')))
+                ->icon(Heroicon::ArrowDown)
+                ->action(fn (SecondHandMachine $record) => response()->streamDownload(function () use ($record): void {
+                    echo Pdf::loadHtml(
+                        Blade::render('secondhandmachines.print', ['machine' => $record])
+                    )->stream();
+                }, $record->name.'.pdf')),
         ];
     }
 }

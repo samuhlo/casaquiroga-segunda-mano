@@ -52,5 +52,6 @@
     "include in document": "incluir en el documento",
     "cancel": "cancelar",
     "open document": "abrir documento",
-    "photos_hint": "las imágenes se mostrarán en el orden que las guardes. Puedes reordenarlas arrastrando. La última será la principal"
+    "photos_hint": "las imágenes se mostrarán en el orden que las guardes. Puedes reordenarlas arrastrando. La última será la principal",
+    "download_pdf": "descargar PDF"
 }
