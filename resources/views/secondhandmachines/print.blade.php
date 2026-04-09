@@ -362,7 +362,7 @@
         {{-- DESCRIPCIÓN --}}
         @if($machine->description)
             <p class="section-label">{{ ucfirst(__('description'))}}</p>
-            <div class="description">{{ $machine->description }}</div>
+            <div class="description">{!! $machine->description !!}</div>
         @endif
 
         {{-- FOOTER --}}
