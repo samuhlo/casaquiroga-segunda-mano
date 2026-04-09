@@ -87,6 +87,7 @@ final class SecondHandMachineForm
                             ->numeric()
                             ->default(null),
 
+                        // @see: https://github.com/filamentphp/filament/discussions/17718
                         Tabs::make('description_tabs')
                             ->columnSpanFull()
                             ->tabs([
