@@ -37,6 +37,7 @@ final class ViewSecondHandMachine extends ViewRecord
             Action::make('download_pdf')
                 ->label(ucfirst(__('download_pdf')))
                 ->icon(Heroicon::ArrowDown)
+                ->color('info')
                 ->action(fn (SecondHandMachine $record) => response()->streamDownload(function () use ($record): void {
                     echo Pdf::loadHtml(
                         Blade::render('secondhandmachines.print', ['machine' => $record])
