@@ -36,23 +36,10 @@
 
     </style>
 
-    @php
-        $anim = [
-            'badge' => 0,
-            'titulo' => 100,
-            'precio' => 200,
-            'specs' => 300,
-            'spec1' => 0,
-            'spec2' => 100,
-            'spec3' => 200,
-            'spec4' => 300,
-            'desc' => 400,
-            'acciones' => 500,
-            'slider' => 150,
-        ];
-    @endphp
-
-    <div class="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-8 lg:gap-10 items-start max-w-6xl mx-auto" style="--anim-badge: {{ $anim['badge'] }}ms; --anim-titulo: {{ $anim['titulo'] }}ms; --anim-precio: {{ $anim['precio'] }}ms; --anim-specs: {{ $anim['specs'] }}ms; --anim-spec1: {{ $anim['spec1'] }}ms; --anim-spec2: {{ $anim['spec2'] }}ms; --anim-spec3: {{ $anim['spec3'] }}ms; --anim-spec4: {{ $anim['spec4'] }}ms; --anim-desc: {{ $anim['desc'] }}ms; --anim-acciones: {{ $anim['acciones'] }}ms; --anim-slider: {{ $anim['slider'] }}ms;">
+    <div
+        class="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-8 lg:gap-10 items-start max-w-6xl mx-auto"
+        style="--anim-badge: 0ms; --anim-titulo: 100ms; --anim-precio: 200ms; --anim-specs: 300ms; --anim-spec1: 0ms; --anim-spec2: 100ms; --anim-spec3: 200ms; --anim-spec4: 300ms; --anim-desc: 400ms; --anim-acciones: 500ms; --anim-slider: 150ms;"
+    >
 
         {{-- COLUMNA IZQUIERDA — info, specs, acciones --}}
         <div class="flex flex-col gap-4">
@@ -63,30 +50,30 @@
             </div>
 
             <div class="fade-up" style="animation-delay: var(--anim-titulo);">
-                <h1 class="text-5xl font-bold text-gray-950 dark:text-white leading-tight tracking-tight">
+                <h1 class="text-5xl font-bold leading-tight tracking-tight">
                     {{ ucfirst($record->name) }}
                 </h1>
             </div>
 
-            <x-filament::card class="fade-up p-5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700" style="animation-delay: var(--anim-precio);">
-                <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-1">{{ ucfirst(__('selling_price'))}}</p>
-                <p class="text-4xl font-bold text-gray-950 dark:text-white leading-none">
+            <x-filament::card class="fade-up p-5" style="animation-delay: var(--anim-precio);">
+                <p class="text-xs font-semibold uppercase tracking-widest mb-1">{{ ucfirst(__('selling_price'))}}</p>
+                <p class="text-4xl font-bold leading-none">
                     {{ number_format($record->selling_price, 0, ',', '.') }}
-                    <span class="text-xl font-normal text-gray-500 dark:text-gray-400">€</span>
+                    <span class="text-xl font-normal">€</span>
                 </p>
             </x-filament::card>
 
             <div class="grid grid-cols-2 gap-3 fade-up" style="animation-delay: var(--anim-specs);">
-                <x-secondhandmachines.bento-spec label="{{ ucfirst(__('brand')) }}" :value="$record->brand?->name ?? 'Sin marca'" delay="{{ $anim['spec1'] }}" />
-                <x-secondhandmachines.bento-spec label="{{ ucfirst(__('model')) }}" :value="$record->model ?? '—'" delay="{{ $anim['spec2'] }}" />
-                <x-secondhandmachines.bento-spec label="{{ ucfirst(__('work_hours')) }}" :value="number_format($record->work_hours ?? 0, 0, ',', '.') . ' h'" delay="{{ $anim['spec3'] }}" />
-                <x-secondhandmachines.bento-spec label="{{ ucfirst(__('identifier_code')) }}" :value="$record->identifier_code ?? '—'" mono delay="{{ $anim['spec4'] }}" />
+                <x-secondhandmachines.bento-spec label="{{ ucfirst(__('brand')) }}" :value="$record->brand?->name ?? 'Sin marca'" delay="0" />
+                <x-secondhandmachines.bento-spec label="{{ ucfirst(__('model')) }}" :value="$record->model ?? '—'" delay="100" />
+                <x-secondhandmachines.bento-spec label="{{ ucfirst(__('work_hours')) }}" :value="number_format($record->work_hours ?? 0, 0, ',', '.') . ' h'" delay="200" />
+                <x-secondhandmachines.bento-spec label="{{ ucfirst(__('identifier_code')) }}" :value="$record->identifier_code ?? '—'" mono delay="300" />
             </div>
 
             @if($record->description)
             <x-filament::card class="fade-up p-5" style="animation-delay: var(--anim-desc); animation-fill-mode: both;">
                 <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">{{ ucfirst(__('description')) }}</p>
-                <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{{ $record->description }}</p>
+                <p class="text-sm leading-relaxed">{{ $record->description }}</p>
             </x-filament::card>
             @endif
 
