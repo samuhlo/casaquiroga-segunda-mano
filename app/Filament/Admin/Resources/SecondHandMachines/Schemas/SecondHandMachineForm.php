@@ -95,7 +95,7 @@ final class SecondHandMachineForm
                                     RichEditor::make('description')
                                         ->reactive()
                                         ->afterStateUpdated(fn (?string $state, Set $set): mixed => $set('description_html', $state))
-                                        ->afterStateHydrated(fn ($state, Set $set): mixed => $set('description_html', $state)),
+                                        ->afterStateHydrated(fn (?string $state, Set $set): mixed => $set('description_html', $state)),
                                 ]),
                                 Tab::make('HTML')->schema([
                                     Textarea::make('description_html')
