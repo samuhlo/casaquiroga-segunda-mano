@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Employee\Resources\SecondHandMachines\Tables;
 
 use App\Enums\SellStatus;
-use App\Enums\Tax;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
@@ -50,6 +49,7 @@ final class SecondHandMachinesTable
                 [
                     SelectFilter::make('sell_status')
                         ->label(ucfirst(__('sell_status')))
+                        ->multiple()
                         ->options(
                             collect(SellStatus::cases())
                                 ->mapWithKeys(fn (SellStatus $case): array => [
@@ -57,17 +57,6 @@ final class SecondHandMachinesTable
                                 ])
                                 ->all()
                         ),
-
-                    SelectFilter::make('tax')
-                        ->label(ucfirst(__('tax')))
-                        ->options(
-                            collect(Tax::cases())
-                                ->mapWithKeys(fn (Tax $case): array => [
-                                    $case->value => $case->getLabel(),
-                                ])
-                                ->all()
-                        ),
-
                 ],
                 layout: FiltersLayout::Modal
             )
